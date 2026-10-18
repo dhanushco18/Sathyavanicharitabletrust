@@ -176,7 +176,7 @@ export function Header() {
               <Button
                 variant="primary"
                 size="sm"
-                href="/get-involved/sponsor"
+                href="/sponsor"
                 icon={<Heart className="w-4 h-4 fill-white/20" />}
                 className="hidden sm:inline-flex"
               >

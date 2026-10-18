@@ -8,13 +8,15 @@ export const SITE_CONFIG = {
     "A grassroots nonprofit organization based in Chennai, committed to providing free quality education, holistic child development, and dignity-first community welfare.",
   phone: "+91 98414 54501",
   rawPhone: "9841454501",
-  whatsappUrl: "https://wa.me/919841454501?text=Hello%2C%20I%20would%20like%20to%20learn%20more%20about%20Sathiyavani%20Charitable%20Trust",
+  whatsappUrl:
+    "https://wa.me/919841454501?text=Hello%2C%20I%20would%20like%20to%20learn%20more%20about%20Sathiyavani%20Charitable%20Trust",
   location: "Chennai, Tamil Nadu, India",
   founderName: "Mr. Raghu N.",
   founderRole: "Founder & President",
   inceptionYear: "2020",
   registeredYear: "2023",
   centerLandmark: "Library Learning Center, Chennai",
+  provisionalAddress: "Community Center Facility, Library Ground Floor, Chennai, Tamil Nadu, India",
 };
 
 export const MAIN_NAV_ITEMS: NavItem[] = [
@@ -25,17 +27,22 @@ export const MAIN_NAV_ITEMS: NavItem[] = [
       {
         label: "About the Trust",
         href: "/about",
-        description: "Our history, guiding principles, and community roots.",
+        description: "Our origins, core values, and community roots.",
       },
       {
         label: "Founder Story",
-        href: "/about/founder",
-        description: "Mr. Raghu N.'s journey from roadside tutoring to the learning center.",
+        href: "/founder",
+        description: "Mr. Raghu N.'s journey from pandemic roadside tutoring to the learning center.",
       },
       {
-        label: "Governance & Transparency",
-        href: "/about/transparency",
-        description: "Official registration disclosures, 80G status, and reporting.",
+        label: "Mission Statement",
+        href: "/mission",
+        description: "Our ongoing commitment to education, inclusion, and care.",
+      },
+      {
+        label: "Our Vision",
+        href: "/vision",
+        description: "Long-term goals for children, families, and communities.",
       },
     ],
   },
@@ -46,22 +53,22 @@ export const MAIN_NAV_ITEMS: NavItem[] = [
       {
         label: "Free Education",
         href: "/programs/education",
-        description: "Daily after-school tuition and school fee assistance.",
+        description: "Daily after-school tuition and school-fee assistance.",
       },
       {
         label: "Child Development",
         href: "/programs/child-development",
-        description: "Sports, arts, talent discovery, and birthday celebrations.",
+        description: "Birthdays, sports coaching, and creative arts.",
       },
       {
         label: "Community Outreach",
-        href: "/programs/community-welfare",
-        description: "Assistance for single parents, disabled, and tribal families.",
+        href: "/programs/community-outreach",
+        description: "Support for single-parent, differently-abled, and tribal families.",
       },
       {
         label: "Festival Support",
-        href: "/programs/festivals",
-        description: "Annual Diwali Joy distribution and cultural celebrations.",
+        href: "/programs/festival-support",
+        description: "Annual Diwali Joy distribution and festive clothing.",
       },
       {
         label: "Environment",
@@ -71,8 +78,24 @@ export const MAIN_NAV_ITEMS: NavItem[] = [
     ],
   },
   {
-    label: "Impact & Evidence",
+    label: "Impact",
     href: "/impact",
+  },
+  {
+    label: "Stories & Events",
+    href: "/stories",
+    children: [
+      {
+        label: "Stories & Updates",
+        href: "/stories",
+        description: "Field reports and learning moments from our centers.",
+      },
+      {
+        label: "Events & Activities",
+        href: "/events",
+        description: "Documented community distributions and upcoming schedules.",
+      },
+    ],
   },
   {
     label: "Get Involved",
@@ -80,17 +103,17 @@ export const MAIN_NAV_ITEMS: NavItem[] = [
     children: [
       {
         label: "Volunteer With Us",
-        href: "/get-involved/volunteer",
+        href: "/volunteer",
         description: "Tutor students, coordinate weekend sports, or mentor youth.",
       },
       {
         label: "Sponsor a Student",
-        href: "/get-involved/sponsor",
+        href: "/sponsor",
         description: "Fund school fees, books, and essential educational kits.",
       },
       {
         label: "Corporate Partnerships",
-        href: "/get-involved/partnerships",
+        href: "/partnerships",
         description: "Align CSR allocations with measurable education outcomes.",
       },
     ],
@@ -130,7 +153,7 @@ export const PROGRAMMES_LIST: Programme[] = [
   },
   {
     id: "prog-welfare",
-    slug: "community-welfare",
+    slug: "community-outreach",
     title: "Community Outreach",
     category: "Social Inclusion",
     summary:
@@ -138,20 +161,20 @@ export const PROGRAMMES_LIST: Programme[] = [
     iconName: "Users",
     accentColor: "terracotta",
     badgeText: "Vulnerable Families",
-    href: "/programs/community-welfare",
+    href: "/programs/community-outreach",
     statsPlaceholder: "Family Support",
   },
   {
     id: "prog-festivals",
-    slug: "festivals",
-    title: "Diwali Gift Initiative",
+    slug: "festival-support",
+    title: "Festival Support (Diwali Gift Initiative)",
     category: "Festive Joy",
     summary:
       "Delivering new festive clothes, educational supplies, and festive meals each Diwali to bring light and dignity to underserved homes.",
     iconName: "Sparkles",
     accentColor: "amber",
     badgeText: "Annual Tradition",
-    href: "/programs/festivals",
+    href: "/programs/festival-support",
     statsPlaceholder: "Annual Distribution",
   },
   {
@@ -169,10 +192,6 @@ export const PROGRAMMES_LIST: Programme[] = [
   },
 ];
 
-/**
- * Historical records documented on reference site.
- * Note: Clearly differentiated between historical self-reports and 2025 targets.
- */
 export const VERIFIED_IMPACT_BASELINE: ImpactMetric[] = [
   {
     id: "metric-1",

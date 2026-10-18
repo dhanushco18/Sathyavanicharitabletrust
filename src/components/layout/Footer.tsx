@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { Phone, MapPin, Mail, Heart, ArrowUpRight } from "lucide-react";
+import { Phone, MapPin, Heart, ArrowUpRight } from "lucide-react";
 import { SITE_CONFIG, PROGRAMMES_LIST } from "@/lib/constants";
 import { Container } from "@/components/ui/Container";
 
@@ -16,15 +16,15 @@ export function Footer() {
           <div className="flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">
             <div>
               <span className="text-xs uppercase font-semibold text-brand-amber tracking-wider">
-                Community Movement
+                Grassroots Community Movement
               </span>
               <h2 className="font-heading text-xl sm:text-2xl font-bold text-white mt-1">
-                Every child deserves an unbroken path to learning.
+                Every child deserves an unbroken path to learning and dignity.
               </h2>
             </div>
             <div className="flex flex-wrap items-center justify-center gap-3">
               <Link
-                href="/get-involved/sponsor"
+                href="/sponsor"
                 className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-brand-terracotta text-white font-semibold text-sm hover:bg-brand-terracotta-hover transition-colors shadow-sm"
               >
                 <Heart className="w-4 h-4 fill-white/20" aria-hidden="true" />
@@ -108,10 +108,10 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* Col 4: About & Impact */}
+          {/* Col 4: About & Organisation */}
           <div>
             <h3 className="text-xs uppercase font-bold text-white tracking-wider mb-4">
-              Organization
+              Organisation
             </h3>
             <ul className="space-y-2.5 text-sm text-slate-300">
               <li>
@@ -120,26 +120,33 @@ export function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/about/founder" className="hover:text-white transition-colors">
+                <Link href="/founder" className="hover:text-white transition-colors">
                   Founder's Story
                 </Link>
               </li>
               <li>
+                <Link href="/mission" className="hover:text-white transition-colors">
+                  Mission Statement
+                </Link>
+              </li>
+              <li>
+                <Link href="/vision" className="hover:text-white transition-colors">
+                  Our Vision
+                </Link>
+              </li>
+              <li>
                 <Link href="/impact" className="hover:text-white transition-colors">
-                  Verified Impact Metrics
+                  Impact & Verification
                 </Link>
               </li>
               <li>
-                <Link
-                  href="/about/transparency"
-                  className="hover:text-white transition-colors inline-flex items-center gap-1"
-                >
-                  <span>Governance & Transparency</span>
+                <Link href="/stories" className="hover:text-white transition-colors">
+                  Field Stories & Updates
                 </Link>
               </li>
               <li>
-                <Link href="/contact" className="hover:text-white transition-colors">
-                  Contact & Visiting Hours
+                <Link href="/events" className="hover:text-white transition-colors">
+                  Events & Activities
                 </Link>
               </li>
             </ul>
@@ -153,7 +160,7 @@ export function Footer() {
             <ul className="space-y-2.5 text-sm text-slate-300">
               <li>
                 <Link
-                  href="/get-involved/volunteer"
+                  href="/volunteer"
                   className="hover:text-white transition-colors"
                 >
                   Volunteer as a Tutor
@@ -161,7 +168,7 @@ export function Footer() {
               </li>
               <li>
                 <Link
-                  href="/get-involved/sponsor"
+                  href="/sponsor"
                   className="hover:text-white transition-colors text-brand-amber font-medium"
                 >
                   Sponsor a Student
@@ -169,10 +176,15 @@ export function Footer() {
               </li>
               <li>
                 <Link
-                  href="/get-involved/partnerships"
+                  href="/partnerships"
                   className="hover:text-white transition-colors"
                 >
                   Corporate CSR Partnerships
+                </Link>
+              </li>
+              <li>
+                <Link href="/contact" className="hover:text-white transition-colors">
+                  Contact & Location
                 </Link>
               </li>
               <li>
@@ -180,9 +192,9 @@ export function Footer() {
                   href={SITE_CONFIG.whatsappUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="hover:text-emerald-400 transition-colors inline-flex items-center gap-1"
+                  className="hover:text-emerald-400 transition-colors inline-flex items-center gap-1 pt-1"
                 >
-                  <span>WhatsApp Community</span>
+                  <span>WhatsApp Contact</span>
                   <ArrowUpRight className="w-3.5 h-3.5" aria-hidden="true" />
                 </a>
               </li>
@@ -197,16 +209,16 @@ export function Footer() {
               © {currentYear} {SITE_CONFIG.name}. All rights reserved.
             </p>
             <p className="text-[11px] text-slate-600 mt-0.5">
-              Registered Public Charitable Trust. Non-Profit Organization in Tamil Nadu, India.
+              Registered Public Charitable Trust (2023). Grassroots Non-Profit Organization in Tamil Nadu, India.
             </p>
           </div>
 
           <div className="flex flex-wrap items-center justify-center gap-4 text-xs">
-            <Link href="/privacy-policy" className="hover:text-slate-300 transition-colors">
-              Privacy & Child Safeguarding
+            <Link href="/privacy" className="hover:text-slate-300 transition-colors">
+              Privacy & Safeguarding Notice
             </Link>
             <span aria-hidden="true">•</span>
-            <Link href="/terms-of-use" className="hover:text-slate-300 transition-colors">
+            <Link href="/terms" className="hover:text-slate-300 transition-colors">
               Terms of Use
             </Link>
           </div>

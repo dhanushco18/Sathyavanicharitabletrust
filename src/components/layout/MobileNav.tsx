@@ -156,7 +156,7 @@ export function MobileNav({ isOpen, onClose, items }: MobileNavProps) {
           <Button
             variant="primary"
             size="md"
-            href="/get-involved/sponsor"
+            href="/sponsor"
             icon={<Heart className="w-4 h-4 fill-white/20" />}
             className="w-full justify-center"
             onClick={onClose}
