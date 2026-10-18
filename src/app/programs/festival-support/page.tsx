@@ -235,7 +235,15 @@ export default function FestivalSupportPage() {
 
             {/* Right 4 Cols: Festive Sponsorship Action */}
             <div className="lg:col-span-4 space-y-6">
-              <Card variant="elevated" className="p-6 sm:p-7 border-brand-amber/40">
+              <Card variant="elevated" className="p-6 sm:p-7 border-brand-amber/40 overflow-hidden card-glow-hover">
+                <div className="relative aspect-[16/10] rounded-xl overflow-hidden mb-4 bg-brand-navy-dark shadow-inner">
+                  <Image
+                    src="/assets/images/diwali-distribution.jpg"
+                    alt="Diwali gift kits distributed to children and families in Chennai"
+                    fill
+                    className="object-cover"
+                  />
+                </div>
                 <span className="text-[11px] font-bold uppercase tracking-wider text-brand-amber block mb-2">
                   Festive Support
                 </span>

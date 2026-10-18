@@ -7,6 +7,7 @@ import { X, ChevronDown, Phone, MessageSquare, Heart } from "lucide-react";
 import { NavItem } from "@/lib/types";
 import { SITE_CONFIG } from "@/lib/constants";
 import { Button } from "@/components/ui/Button";
+import { LanguageSwitcher } from "./LanguageSwitcher";
 import { cn } from "@/lib/utils";
 
 interface MobileNavProps {
@@ -77,14 +78,17 @@ export function MobileNav({ isOpen, onClose, items }: MobileNavProps) {
               </span>
             </div>
 
-            <button
-              type="button"
-              onClick={onClose}
-              className="p-2 -mr-2 text-slate-500 hover:text-slate-800 rounded-lg hover:bg-slate-100 focus-visible:outline-2 focus-visible:outline-brand-navy min-h-[44px] min-w-[44px] flex items-center justify-center"
-              aria-label="Close mobile navigation"
-            >
-              <X className="w-5 h-5" aria-hidden="true" />
-            </button>
+            <div className="flex items-center gap-2">
+              <LanguageSwitcher />
+              <button
+                type="button"
+                onClick={onClose}
+                className="p-2 -mr-2 text-slate-500 hover:text-slate-800 rounded-lg hover:bg-slate-100 focus-visible:outline-2 focus-visible:outline-brand-navy min-h-[44px] min-w-[44px] flex items-center justify-center"
+                aria-label="Close mobile navigation"
+              >
+                <X className="w-5 h-5" aria-hidden="true" />
+              </button>
+            </div>
           </div>
 
           {/* Navigation Accordion List */}

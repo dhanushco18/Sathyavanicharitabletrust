@@ -54,19 +54,16 @@ export default function ChildDevelopmentPage() {
 
   const gallery = [
     {
-      src: "https://images.unsplash.com/photo-1485546246426-74dc88dec4d9?auto=format&fit=crop&w=800&q=80",
-      caption: "Creative arts and drawing workshops where children explore visual storytelling.",
-      isPlaceholder: true,
+      src: "/assets/images/child-birthday.jpg",
+      caption: "Community milestone celebrations recognizing and honoring every enrolled child's birthday with cards and gifts.",
     },
     {
-      src: "https://images.unsplash.com/photo-1517649763962-0c623266ddc0?auto=format&fit=crop&w=800&q=80",
-      caption: "Weekend athletics and team sports fostering physical fitness and leadership.",
-      isPlaceholder: true,
+      src: "/assets/images/tuition-learning.jpg",
+      caption: "Creative arts, drawing, and interactive storytelling workshops fostering expressive confidence.",
     },
     {
-      src: "https://images.unsplash.com/photo-1464349153735-7db50ed83c84?auto=format&fit=crop&w=800&q=80",
-      caption: "Community milestone celebrations recognizing every enrolled child's birthday.",
-      isPlaceholder: true,
+      src: "/assets/images/tree-planting.jpg",
+      caption: "Outdoor group games and environmental activities nurturing teamwork and leadership.",
     },
   ];
 
@@ -232,7 +229,15 @@ export default function ChildDevelopmentPage() {
 
             {/* Right 4 Cols: Actions & Volunteer Call */}
             <div className="lg:col-span-4 space-y-6">
-              <Card variant="elevated" className="p-6 sm:p-7 border-brand-amber/40">
+              <Card variant="elevated" className="p-6 sm:p-7 border-brand-amber/40 overflow-hidden card-glow-hover">
+                <div className="relative aspect-[16/10] rounded-xl overflow-hidden mb-4 bg-brand-navy-dark shadow-inner">
+                  <Image
+                    src="/assets/images/child-birthday.jpg"
+                    alt="Children celebrating a milestone birthday at the community center in Chennai"
+                    fill
+                    className="object-cover"
+                  />
+                </div>
                 <span className="text-[11px] font-bold uppercase tracking-wider text-brand-amber block mb-2">
                   Volunteer Opportunity
                 </span>

@@ -115,6 +115,14 @@ export function Footer() {
                   </Link>
                 </li>
               ))}
+              <li className="pt-1.5">
+                <Link
+                  href="/programs"
+                  className="text-xs font-semibold text-brand-amber hover:text-white transition-colors inline-flex items-center gap-1"
+                >
+                  <span>All Programmes Overview &rarr;</span>
+                </Link>
+              </li>
             </ul>
           </div>
 
@@ -168,6 +176,14 @@ export function Footer() {
               Get Involved
             </h3>
             <ul className="space-y-2.5 text-sm text-slate-300">
+              <li>
+                <Link
+                  href="/get-involved"
+                  className="hover:text-white transition-colors text-slate-200 font-semibold"
+                >
+                  Ways to Get Involved
+                </Link>
+              </li>
               <li>
                 <Link
                   href="/volunteer"

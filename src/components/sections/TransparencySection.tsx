@@ -87,10 +87,10 @@ export function TransparencySection() {
               </span>
             </div>
             <Link
-              href="/about/transparency"
+              href="/about"
               className="text-xs font-bold text-white hover:text-brand-amber transition-colors inline-flex items-center gap-1 shrink-0"
             >
-              <span>View Governance Portal</span>
+              <span>View Trust Governance</span>
               <ArrowRight className="w-3.5 h-3.5" />
             </Link>
           </div>

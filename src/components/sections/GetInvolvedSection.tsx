@@ -13,7 +13,7 @@ export function GetInvolvedSection() {
       description:
         "Fund school fees, textbooks, uniforms, and learning kits for children whose families face financial distress.",
       actionText: "Explore Sponsorship",
-      href: "/get-involved/sponsor",
+      href: "/sponsor",
       variant: "primary" as const,
       popular: true,
     },
@@ -23,7 +23,7 @@ export function GetInvolvedSection() {
       description:
         "Dedicate weekend hours to mentor students in math, science, English, or extracurricular sports and arts.",
       actionText: "Apply as Volunteer",
-      href: "/get-involved/volunteer",
+      href: "/volunteer",
       variant: "secondary" as const,
       popular: false,
     },
@@ -33,7 +33,7 @@ export function GetInvolvedSection() {
       description:
         "Collaborate with our trust on measurable education and biodiversity programs backed by verifiable reporting.",
       actionText: "Partner With Us",
-      href: "/get-involved/partnerships",
+      href: "/partnerships",
       variant: "secondary" as const,
       popular: false,
     },
@@ -43,7 +43,7 @@ export function GetInvolvedSection() {
       description:
         "Contribute new clothing, sweets, and stationery kits for our annual Diwali Joy distribution across Chennai.",
       actionText: "Support Festival Joy",
-      href: "/programs/festivals",
+      href: "/programs/festival-support",
       variant: "secondary" as const,
       popular: false,
     },

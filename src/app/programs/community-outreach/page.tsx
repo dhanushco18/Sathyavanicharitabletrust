@@ -192,7 +192,15 @@ export default function CommunityOutreachPage() {
 
             {/* Right 4 Cols: Actions & Inquiries */}
             <div className="lg:col-span-4 space-y-6">
-              <Card variant="elevated" className="p-6 sm:p-7 border-brand-terracotta/30">
+              <Card variant="elevated" className="p-6 sm:p-7 border-brand-terracotta/30 overflow-hidden card-glow-hover">
+                <div className="relative aspect-[16/10] rounded-xl overflow-hidden mb-4 bg-brand-navy-dark shadow-inner">
+                  <Image
+                    src="/assets/images/diwali-distribution.jpg"
+                    alt="Community relief and festive distribution to families in Chennai"
+                    fill
+                    className="object-cover"
+                  />
+                </div>
                 <span className="text-[11px] font-bold uppercase tracking-wider text-brand-terracotta block mb-2">
                   Emergency Support
                 </span>

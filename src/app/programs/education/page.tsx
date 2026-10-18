@@ -58,19 +58,16 @@ export default function EducationProgramPage() {
 
   const galleryItems = [
     {
-      src: "https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=800&q=80",
-      caption: "Interactive classroom study sessions focusing on foundational arithmetic and science concepts.",
-      isPlaceholder: true,
+      src: "/assets/images/tuition-learning.jpg",
+      caption: "Interactive evening classroom study sessions focusing on foundational mathematics and science concepts.",
     },
     {
-      src: "https://images.unsplash.com/photo-1497633762265-9d179a990aa6?auto=format&fit=crop&w=800&q=80",
-      caption: "Annual educational supply kits provided to students before the start of the academic year.",
-      isPlaceholder: true,
+      src: "/assets/images/diwali-distribution.jpg",
+      caption: "Annual educational supply kits and books provided to students at our community center.",
     },
     {
-      src: "https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&w=800&q=80",
-      caption: "Mentors conducting one-on-one reading and spoken language exercises.",
-      isPlaceholder: true,
+      src: "/assets/images/tree-planting.jpg",
+      caption: "Students participating in environmental and extracurricular learning activities.",
     },
   ];
 
@@ -323,7 +320,7 @@ export default function EducationProgramPage() {
                   <Button
                     variant="primary"
                     size="lg"
-                    href="/get-involved/sponsor"
+                    href="/sponsor"
                     className="w-full justify-center shadow-md shadow-brand-terracotta/20"
                   >
                     Pledge Student Support
@@ -347,7 +344,7 @@ export default function EducationProgramPage() {
                     in Chennai.
                   </p>
                   <Link
-                    href="/get-involved/volunteer"
+                    href="/volunteer"
                     className="text-xs font-bold text-brand-navy hover:text-brand-terracotta transition-colors inline-flex items-center gap-1"
                   >
                     <span>Volunteer Application</span>

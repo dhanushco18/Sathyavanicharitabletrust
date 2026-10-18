@@ -25,6 +25,23 @@ export function Header() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Close menus on navigation
+  useEffect(() => {
+    setActiveDropdown(null);
+    setMobileMenuOpen(false);
+  }, [pathname]);
+
+  // Close desktop dropdown on Escape key
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setActiveDropdown(null);
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, []);
+
   // Hide public consumer header on admin routes
   if (pathname?.startsWith("/admin")) {
     return null;
@@ -121,6 +138,7 @@ export function Header() {
                                 key={child.href}
                                 href={child.href}
                                 role="menuitem"
+                                onClick={() => setActiveDropdown(null)}
                                 className={cn(
                                   "block px-3.5 py-2.5 rounded-lg text-left transition-colors",
                                   pathname === child.href

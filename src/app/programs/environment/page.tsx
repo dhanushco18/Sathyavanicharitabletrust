@@ -187,7 +187,15 @@ export default function EnvironmentProgramPage() {
 
             {/* Right 4 Cols: Actions */}
             <div className="lg:col-span-4 space-y-6">
-              <Card variant="elevated" className="p-6 sm:p-7 border-brand-teal/40">
+              <Card variant="elevated" className="p-6 sm:p-7 border-brand-teal/40 overflow-hidden card-glow-hover">
+                <div className="relative aspect-[16/10] rounded-xl overflow-hidden mb-4 bg-emerald-950 shadow-inner">
+                  <Image
+                    src="/assets/images/tree-planting.jpg"
+                    alt="Students planting native tree saplings with volunteers in Chennai"
+                    fill
+                    className="object-cover"
+                  />
+                </div>
                 <span className="text-[11px] font-bold uppercase tracking-wider text-brand-teal block mb-2">
                   Green Participation
                 </span>

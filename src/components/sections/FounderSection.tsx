@@ -123,7 +123,7 @@ export function FounderSection() {
 
             <div className="pt-2">
               <Link
-                href="/about/founder"
+                href="/founder"
                 className="inline-flex items-center gap-2 text-sm font-bold text-brand-navy hover:text-brand-terracotta transition-colors group"
               >
                 <span>Read the Complete Founder's Journey</span>
