@@ -11,6 +11,8 @@ import {
   X,
   FileCheck2,
   RotateCcw,
+  Download,
+  Filter,
 } from "lucide-react";
 import { ImpactMetricRecord, MetricStatus } from "@/lib/db/types";
 import { updateMetricStatusAction, createImpactMetricAction } from "../actions";
@@ -27,6 +29,8 @@ export function ImpactMetricsManager({ initialMetrics, isSuperAdmin }: ImpactMet
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isUpdating, setIsUpdating] = useState<string | null>(null);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const [periodFilter, setPeriodFilter] = useState<string>("all");
+  const [statusFilter, setStatusFilter] = useState<string>("all");
 
   // New Metric Form State
   const [metricKey, setMetricKey] = useState("");
@@ -38,6 +42,49 @@ export function ImpactMetricsManager({ initialMetrics, isSuperAdmin }: ImpactMet
   const [description, setDescription] = useState("");
   const [methodology, setMethodology] = useState("");
   const [verificationSource, setVerificationSource] = useState("");
+
+  // Extract distinct reporting periods for the filter dropdown
+  const distinctPeriods = Array.from(new Set(metrics.map((m) => m.reporting_period))).filter(Boolean);
+
+  // Compute filtered metrics
+  const filteredMetrics = metrics.filter((m) => {
+    if (periodFilter !== "all" && m.reporting_period !== periodFilter) return false;
+    if (statusFilter !== "all" && m.status !== statusFilter) return false;
+    return true;
+  });
+
+  const handleExportReport = () => {
+    const reportData = {
+      organization: "Sathiyavani Charitable Trust",
+      exportTimestamp: new Date().toISOString(),
+      governanceScope: "Verified Charitable Impact Metrics",
+      filterCriteria: { period: periodFilter, status: statusFilter },
+      metricsCount: filteredMetrics.length,
+      metrics: filteredMetrics.map((m) => ({
+        id: m.id,
+        key: m.metric_key,
+        title: m.title,
+        value: `${m.numeric_value}${m.display_suffix || ""}`,
+        unit: m.unit,
+        period: m.reporting_period,
+        status: m.status,
+        methodology: m.methodology,
+        verificationSource: m.verification_source,
+        approvedBy: m.approved_by || "Pending Trustee Approval",
+        approvedAt: m.approved_at || null,
+      })),
+    };
+
+    const blob = new Blob([JSON.stringify(reportData, null, 2)], { type: "application/json" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = `sathiyavani-impact-report-${new Date().toISOString().slice(0, 10)}.json`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  };
 
   const handleStatusTransition = async (metricId: string, targetStatus: MetricStatus) => {
     setIsUpdating(metricId);
@@ -101,13 +148,67 @@ export function ImpactMetricsManager({ initialMetrics, isSuperAdmin }: ImpactMet
           </p>
         </div>
 
-        <button
-          onClick={() => setIsModalOpen(true)}
-          className="inline-flex items-center gap-2 px-4 py-2.5 bg-brand-navy hover:bg-brand-navy/90 text-white font-semibold rounded-xl text-xs shadow-subtle transition-all shrink-0"
-        >
-          <Plus className="w-4 h-4" />
-          <span>Propose New Metric</span>
-        </button>
+        <div className="flex flex-wrap items-center gap-2">
+          <button
+            onClick={handleExportReport}
+            className="inline-flex items-center gap-2 px-3.5 py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-800 font-semibold rounded-xl text-xs transition-colors shrink-0"
+            title="Download JSON Report"
+          >
+            <Download className="w-4 h-4 text-slate-600" />
+            <span>Export Report ({filteredMetrics.length})</span>
+          </button>
+
+          <button
+            onClick={() => setIsModalOpen(true)}
+            className="inline-flex items-center gap-2 px-4 py-2.5 bg-brand-navy hover:bg-brand-navy/90 text-white font-semibold rounded-xl text-xs shadow-subtle transition-all shrink-0"
+          >
+            <Plus className="w-4 h-4" />
+            <span>Propose New Metric</span>
+          </button>
+        </div>
+      </div>
+
+      {/* Filter Toolbar */}
+      <div className="p-3 bg-white rounded-2xl border border-slate-200 flex flex-wrap items-center justify-between gap-3 text-xs">
+        <div className="flex items-center gap-2">
+          <Filter className="w-4 h-4 text-slate-400" />
+          <span className="font-bold text-slate-700">Filter Records:</span>
+        </div>
+
+        <div className="flex flex-wrap items-center gap-2">
+          {/* Period Filter */}
+          <div className="flex items-center gap-1.5">
+            <span className="text-slate-500 font-semibold">Period:</span>
+            <select
+              value={periodFilter}
+              onChange={(e) => setPeriodFilter(e.target.value)}
+              className="px-2.5 py-1.5 bg-slate-50 border border-slate-200 rounded-lg text-slate-800 font-medium text-xs"
+            >
+              <option value="all">All Reporting Periods</option>
+              {distinctPeriods.map((p) => (
+                <option key={p} value={p}>
+                  {p}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          {/* Status Filter */}
+          <div className="flex items-center gap-1.5">
+            <span className="text-slate-500 font-semibold">Status:</span>
+            <select
+              value={statusFilter}
+              onChange={(e) => setStatusFilter(e.target.value)}
+              className="px-2.5 py-1.5 bg-slate-50 border border-slate-200 rounded-lg text-slate-800 font-medium text-xs"
+            >
+              <option value="all">All Statuses</option>
+              <option value="published">Published (Live)</option>
+              <option value="approved">Approved</option>
+              <option value="submitted">Submitted (Under Review)</option>
+              <option value="draft">Draft</option>
+            </select>
+          </div>
+        </div>
       </div>
 
       {/* Governance Advisory Callout */}
@@ -129,7 +230,14 @@ export function ImpactMetricsManager({ initialMetrics, isSuperAdmin }: ImpactMet
 
       {/* Metrics Table / Cards */}
       <div className="space-y-4">
-        {metrics.map((metric) => {
+        {filteredMetrics.length === 0 ? (
+          <div className="py-12 bg-white rounded-3xl border border-slate-200 text-center text-slate-500 space-y-2">
+            <BarChart3 className="w-8 h-8 text-slate-300 mx-auto" />
+            <p className="text-sm font-semibold text-slate-700">No Matching Metrics Found</p>
+            <p className="text-xs text-slate-400">Try adjusting your active period or status filters.</p>
+          </div>
+        ) : (
+          filteredMetrics.map((metric) => {
           const isPending = isUpdating === metric.id;
 
           return (
@@ -272,7 +380,8 @@ export function ImpactMetricsManager({ initialMetrics, isSuperAdmin }: ImpactMet
               </div>
             </Card>
           );
-        })}
+        })
+      )}
       </div>
 
       {/* Propose Metric Modal */}

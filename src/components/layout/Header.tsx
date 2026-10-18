@@ -8,6 +8,7 @@ import { ChevronDown, Menu, Phone, Heart } from "lucide-react";
 import { MAIN_NAV_ITEMS, SITE_CONFIG } from "@/lib/constants";
 import { Button } from "@/components/ui/Button";
 import { MobileNav } from "./MobileNav";
+import { LanguageSwitcher } from "./LanguageSwitcher";
 import { cn } from "@/lib/utils";
 
 export function Header() {
@@ -161,6 +162,9 @@ export function Header() {
 
             {/* Desktop Action & Mobile Toggle */}
             <div className="flex items-center gap-2 sm:gap-3">
+              {/* Language Selector (EN / தமிழ்) */}
+              <LanguageSwitcher />
+
               {/* Quick Call Button (Tablet/Desktop) */}
               <a
                 href={`tel:${SITE_CONFIG.rawPhone}`}

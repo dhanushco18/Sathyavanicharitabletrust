@@ -7,6 +7,7 @@ import { usePathname } from "next/navigation";
 import { Phone, MapPin, Heart, ArrowUpRight } from "lucide-react";
 import { SITE_CONFIG, PROGRAMMES_LIST } from "@/lib/constants";
 import { Container } from "@/components/ui/Container";
+import { LanguageSwitcher } from "./LanguageSwitcher";
 
 export function Footer() {
   const pathname = usePathname();
@@ -230,6 +231,8 @@ export function Footer() {
             <Link href="/terms" className="hover:text-slate-300 transition-colors">
               Terms of Use
             </Link>
+            <span aria-hidden="true">•</span>
+            <LanguageSwitcher variant="footer" />
           </div>
         </div>
       </Container>

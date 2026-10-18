@@ -17,6 +17,7 @@ import {
   Menu,
   X,
   ExternalLink,
+  LineChart,
 } from "lucide-react";
 import { AdminSession } from "@/lib/auth/session";
 import { hasPermission, formatRoleTitle } from "@/lib/auth/rbac";
@@ -56,6 +57,13 @@ export function AdminSidebar({ session }: AdminSidebarProps) {
       icon: BarChart3,
       allowed: true,
       badge: "Governance",
+    },
+    {
+      label: "Analytics & Usage",
+      href: "/admin/analytics",
+      icon: LineChart,
+      allowed: hasPermission(session.role, "view_analytics"),
+      badge: "Privacy",
     },
     {
       label: "Stories & News",

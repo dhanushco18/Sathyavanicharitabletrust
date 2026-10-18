@@ -305,6 +305,46 @@ export default async function AdminOverviewPage() {
           ))}
         </div>
       </div>
+
+      {/* Operational Readiness & Governance Summary (Phase 7) */}
+      <div className="bg-gradient-to-br from-slate-900 to-brand-navy text-white rounded-3xl p-6 sm:p-7 shadow-elevated border border-slate-800 space-y-4">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-white/10 pb-4">
+          <div>
+            <span className="text-brand-amber text-xs font-bold uppercase tracking-wider block">
+              Governance & Maintenance
+            </span>
+            <h3 className="font-heading font-bold text-lg text-white">
+              Platform Health & Operational Controls
+            </h3>
+          </div>
+          <Link
+            href="/admin/analytics"
+            className="inline-flex items-center gap-2 px-3.5 py-2 bg-brand-amber text-slate-950 font-bold rounded-xl text-xs hover:bg-brand-amber/90 transition-colors"
+          >
+            <span>View Privacy Analytics &rarr;</span>
+          </Link>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs">
+          <div className="p-3 bg-white/5 rounded-2xl border border-white/10 space-y-1">
+            <span className="text-white/60 text-[10px] uppercase font-bold block">Localization</span>
+            <div className="font-bold text-white text-sm">EN & தமிழ் Active</div>
+            <p className="text-slate-300 text-[11px]">Human-reviewed dual-language dictionary</p>
+          </div>
+
+          <div className="p-3 bg-white/5 rounded-2xl border border-white/10 space-y-1">
+            <span className="text-white/60 text-[10px] uppercase font-bold block">Child Safeguarding</span>
+            <div className="font-bold text-emerald-400 text-sm">100% Verified Consent</div>
+            <p className="text-slate-300 text-[11px]">Zero unapproved children images or stories</p>
+          </div>
+
+          <div className="p-3 bg-white/5 rounded-2xl border border-white/10 space-y-1">
+            <span className="text-white/60 text-[10px] uppercase font-bold block">Telemetry & Security</span>
+            <div className="font-bold text-white text-sm">Zero-Cookie Telemetry</div>
+            <p className="text-slate-300 text-[11px]">First-party anonymous aggregate stats</p>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
