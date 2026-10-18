@@ -16,7 +16,7 @@ import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
 import { ProgramCard } from "@/components/ui/ProgramCard";
-import { PROGRAMMES_LIST } from "@/lib/constants";
+import { getPublicPrograms } from "@/lib/db/public-queries";
 
 export const metadata: Metadata = {
   title: "Our Programmes — Education, Child Development & Welfare",
@@ -24,8 +24,24 @@ export const metadata: Metadata = {
     "Explore the 5 core community initiatives of Sathiyavani Charitable Trust in Chennai: Free Tuition, Child Development, Community Outreach, Festival Joy, and Environmental Care.",
 };
 
-export default function ProgramsHubPage() {
+export default async function ProgramsHubPage() {
   const breadcrumbItems = [{ label: "Programmes" }];
+  const dbPrograms = await getPublicPrograms();
+
+  const colors: ("navy" | "amber" | "terracotta" | "teal")[] = ["navy", "teal", "amber", "terracotta"];
+
+  const displayPrograms = dbPrograms.map((p, idx) => ({
+    id: p.id,
+    slug: p.slug,
+    title: p.title,
+    summary: p.short_description,
+    category: p.category,
+    iconName: "GraduationCap",
+    accentColor: colors[idx % colors.length],
+    badgeText: idx === 0 ? "Flagship Initiative" : "Active Initiative",
+    href: `/programs/${p.slug}`,
+    statsPlaceholder: p.location,
+  }));
 
   return (
     <div className="bg-brand-canvas min-h-screen">
@@ -66,7 +82,7 @@ export default function ProgramsHubPage() {
       <section className="py-12 sm:py-20">
         <Container>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {PROGRAMMES_LIST.map((prog, index) => (
+            {displayPrograms.map((prog, index) => (
               <ProgramCard
                 key={prog.id}
                 program={prog}

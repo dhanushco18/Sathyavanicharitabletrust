@@ -19,6 +19,7 @@ import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
 import { SITE_CONFIG } from "@/lib/constants";
+import { ContactInquiryForm } from "@/components/forms/ContactInquiryForm";
 
 export const metadata: Metadata = {
   title: "Contact Us & Center Location — Sathiyavani Trust",
@@ -188,8 +189,24 @@ export default function ContactPage() {
               </div>
             </div>
 
-            {/* Right 5 Cols: Enquiry Types Guide & Phase 5 Notice */}
+            {/* Right 5 Cols: Direct Form & Enquiry Guide */}
             <div className="lg:col-span-5 space-y-6">
+              {/* Functional Ingestion Form */}
+              <div className="p-6 sm:p-8 bg-white rounded-2xl border border-slate-200 shadow-subtle space-y-4">
+                <div>
+                  <span className="text-xs uppercase font-bold text-brand-navy tracking-wider block">
+                    Direct Contact Form
+                  </span>
+                  <h3 className="font-heading text-xl font-bold text-slate-900 mt-1">
+                    Send a Message to Trustees
+                  </h3>
+                  <p className="text-xs text-slate-500 mt-1">
+                    Your inquiry is saved directly into our secure coordinator desk.
+                  </p>
+                </div>
+                <ContactInquiryForm />
+              </div>
+
               <div className="p-6 sm:p-8 bg-white rounded-2xl border border-slate-200 shadow-subtle space-y-6">
                 <div>
                   <span className="text-xs uppercase font-bold text-brand-terracotta tracking-wider block">

@@ -1,12 +1,21 @@
+"use client";
+
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 import { Phone, MapPin, Heart, ArrowUpRight } from "lucide-react";
 import { SITE_CONFIG, PROGRAMMES_LIST } from "@/lib/constants";
 import { Container } from "@/components/ui/Container";
 
 export function Footer() {
+  const pathname = usePathname();
   const currentYear = new Date().getFullYear();
+
+  // Hide consumer footer on admin dashboard routes
+  if (pathname?.startsWith("/admin")) {
+    return null;
+  }
 
   return (
     <footer className="bg-brand-navy-dark text-slate-300 mt-auto border-t border-slate-800">

@@ -20,10 +20,10 @@ import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
 import { ImpactCard } from "@/components/ui/ImpactCard";
 import {
-  VERIFIED_IMPACT_BASELINE,
   DIWALI_GROWTH_HISTORY,
   SITE_CONFIG,
 } from "@/lib/constants";
+import { getPublicImpactMetrics } from "@/lib/db/public-queries";
 
 export const metadata: Metadata = {
   title: "Impact, Verification & Accountability | Sathiyavani Trust",
@@ -31,8 +31,20 @@ export const metadata: Metadata = {
     "Transparent reporting on verified beneficiaries, documented festival distributions, student retention milestones, and our social audit methodology in Chennai.",
 };
 
-export default function ImpactPage() {
+export default async function ImpactPage() {
   const breadcrumbItems = [{ label: "Impact & Evidence" }];
+  const dbMetrics = await getPublicImpactMetrics();
+
+  const displayMetrics = dbMetrics.map((m) => ({
+    id: m.id,
+    key: m.metric_key,
+    label: m.title,
+    value: m.numeric_value,
+    suffix: m.display_suffix,
+    period: m.reporting_period,
+    verificationSource: m.verification_source,
+    isAudited: m.status === "published",
+  }));
 
   const metricDefinitions = [
     {
@@ -117,7 +129,7 @@ export default function ImpactPage() {
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-              {VERIFIED_IMPACT_BASELINE.map((metric) => (
+              {displayMetrics.map((metric) => (
                 <ImpactCard key={metric.id} metric={metric} />
               ))}
             </div>
