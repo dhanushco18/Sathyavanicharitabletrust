@@ -58,20 +58,20 @@ export function TransparencySection() {
             {compliancePillars.map((item, idx) => (
               <div
                 key={idx}
-                className="p-6 rounded-2xl bg-white/10 backdrop-blur-xs border border-white/10 flex flex-col justify-between"
+                className="p-6 sm:p-7 rounded-2xl bg-white/10 backdrop-blur-md border border-white/15 hover:border-brand-amber/50 transition-all duration-300 hover:-translate-y-1 flex flex-col justify-between shadow-card"
               >
                 <div>
-                  <div className="w-10 h-10 rounded-xl bg-white/15 flex items-center justify-center mb-4">
+                  <div className="w-11 h-11 rounded-xl bg-white/15 flex items-center justify-center mb-4 border border-white/20 shadow-xs">
                     {item.icon}
                   </div>
-                  <h3 className="font-heading text-base sm:text-lg font-bold text-white mb-2">
+                  <h3 className="font-heading text-lg font-bold text-white mb-2 leading-snug">
                     {item.title}
                   </h3>
-                  <p className="text-xs sm:text-sm text-slate-300 leading-relaxed mb-4">
+                  <p className="text-xs sm:text-sm text-slate-200 leading-relaxed mb-4">
                     {item.description}
                   </p>
                 </div>
-                <div className="pt-3 border-t border-white/10 text-xs font-mono text-brand-amber flex items-center justify-between">
+                <div className="pt-3.5 border-t border-white/15 text-xs font-semibold text-brand-amber flex items-center justify-between">
                   <span>{item.status}</span>
                 </div>
               </div>

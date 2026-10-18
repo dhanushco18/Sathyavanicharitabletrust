@@ -236,19 +236,27 @@ export default function AboutPage() {
             {/* Right 4 Cols: Quick Navigation & Leadership Spotlight */}
             <div className="lg:col-span-4 space-y-6">
               {/* Founder Profile Card */}
-              <Card variant="elevated" className="p-6 sm:p-7">
-                <span className="text-[11px] font-bold uppercase tracking-wider text-brand-amber block mb-2">
-                  Leadership
-                </span>
-                <h3 className="font-heading text-xl font-bold text-slate-900">
-                  {SITE_CONFIG.founderName}
-                </h3>
-                <p className="text-xs font-medium text-slate-500 mb-4">
-                  Founder & President
-                </p>
-                <p className="text-sm text-slate-600 leading-relaxed mb-6">
+              <Card variant="elevated" className="p-6 sm:p-7 card-glow-hover overflow-hidden">
+                <div className="relative aspect-[4/3] rounded-xl overflow-hidden mb-4 bg-brand-navy-dark shadow-inner">
+                  <Image
+                    src="/assets/images/founder-raghu.jpg"
+                    alt={SITE_CONFIG.founderName}
+                    fill
+                    className="object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent" />
+                  <div className="absolute bottom-2.5 left-3 right-3 text-white">
+                    <span className="text-[10px] font-bold uppercase tracking-wider text-brand-amber block">
+                      Managing Trustee
+                    </span>
+                    <span className="font-heading text-sm font-bold block">
+                      {SITE_CONFIG.founderName}
+                    </span>
+                  </div>
+                </div>
+                <p className="text-sm text-slate-600 leading-relaxed mb-5">
                   "No child should be denied education due to financial hardship." A dedicated
-                  social worker who turned personal conviction into an enduring community movement.
+                  educator who turned personal conviction into an enduring community movement in Chennai.
                 </p>
                 <Button variant="secondary" size="sm" href="/founder" className="w-full justify-center">
                   Read Full Founder Story

@@ -62,3 +62,57 @@
 ::-webkit-scrollbar-thumb:hover {
   background: #94A3B8;
 }
+
+/* Modern Aesthetic Utilities */
+.hero-dot-pattern {
+  background-image: radial-gradient(#0F4C81 0.8px, transparent 0.8px);
+  background-size: 24px 24px;
+}
+
+.hero-mesh-gradient {
+  background: radial-gradient(circle at 10% 20%, rgba(15, 76, 129, 0.05) 0%, transparent 40%),
+              radial-gradient(circle at 90% 80%, rgba(217, 130, 43, 0.06) 0%, transparent 40%),
+              radial-gradient(circle at 50% 50%, rgba(184, 74, 57, 0.03) 0%, transparent 60%);
+}
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(226, 232, 240, 0.8);
+}
+
+.glass-card-dark {
+  background: rgba(15, 76, 129, 0.88);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.card-glow-hover {
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.card-glow-hover:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 16px 36px -8px rgba(15, 76, 129, 0.12), 0 4px 12px -2px rgba(15, 76, 129, 0.06);
+}
+
+/* Shimmer effect for badges and action pills */
+@keyframes shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(200%); }
+}
+
+.shimmer-badge {
+  position: relative;
+  overflow: hidden;
+}
+.shimmer-badge::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  transform: translateX(-100%);
+  animation: shimmer 3s infinite;
+}
+

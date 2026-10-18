@@ -39,34 +39,34 @@ export function FounderSection() {
           <div className="lg:col-span-5">
             <div className="relative mx-auto max-w-sm lg:max-w-none">
               {/* Outer decorative border */}
-              <div className="relative rounded-3xl overflow-hidden bg-white p-3 shadow-card border border-slate-200">
-                <div className="relative aspect-[4/5] rounded-2xl overflow-hidden bg-brand-navy-dark">
+              <div className="relative rounded-3xl overflow-hidden bg-white/95 backdrop-blur-md p-3.5 shadow-elevated border border-slate-200 card-glow-hover">
+                <div className="relative aspect-[3/4] rounded-2xl overflow-hidden bg-brand-navy-dark shadow-inner">
                   <Image
-                    src="https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=800&q=80"
-                    alt="Contextual representation of grassroots community leadership"
+                    src="/assets/images/founder-raghu.jpg"
+                    alt={`${SITE_CONFIG.founderName}, Founder of Sathiyavani Charitable Trust standing in the community library`}
                     fill
-                    sizes="(max-width: 768px) 100vw, 400px"
-                    className="object-cover"
+                    sizes="(max-width: 768px) 100vw, 420px"
+                    className="object-cover transition-transform duration-700 hover:scale-105"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/30 to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/20 to-transparent" />
 
                   {/* Leader Tag */}
                   <div className="absolute bottom-5 left-5 right-5 text-white">
-                    <span className="text-xs uppercase font-bold text-brand-amber tracking-wider block">
-                      Founder & President
+                    <span className="text-[11px] uppercase font-bold text-brand-amber tracking-wider block drop-shadow-xs">
+                      Founder & Managing Trustee
                     </span>
-                    <h3 className="font-heading text-2xl font-extrabold text-white mt-0.5">
+                    <h3 className="font-heading text-2xl font-extrabold text-white mt-0.5 drop-shadow-xs">
                       {SITE_CONFIG.founderName}
                     </h3>
-                    <p className="text-xs text-slate-300 mt-1">
-                      Grassroots Educator & Social Worker
+                    <p className="text-xs text-slate-200 mt-1">
+                      Grassroots Educator & Social Reformer • Chennai
                     </p>
                   </div>
                 </div>
 
                 <div className="p-3 text-center">
-                  <span className="text-[11px] text-slate-400 italic">
-                    Note: Editorial photograph shown. Official leadership portrait pending trust photo release.
+                  <span className="text-[11px] text-slate-500 font-medium">
+                    "Every child has the potential to lead when supported with dignity."
                   </span>
                 </div>
               </div>

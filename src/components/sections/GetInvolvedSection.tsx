@@ -64,24 +64,31 @@ export function GetInvolvedSection() {
           {pathways.map((item, idx) => (
             <div
               key={idx}
-              className={`relative flex flex-col justify-between p-6 sm:p-7 rounded-2xl bg-white border transition-all duration-300 hover:-translate-y-1 ${
+              className={`relative flex flex-col justify-between p-6 sm:p-7 rounded-2xl border transition-all duration-300 card-glow-hover ${
                 item.popular
-                  ? "border-brand-terracotta/40 shadow-card ring-1 ring-brand-terracotta/20"
-                  : "border-slate-200 shadow-subtle hover:shadow-card"
+                  ? "bg-gradient-to-b from-brand-amber-soft/50 via-white to-white border-brand-amber/50 shadow-card ring-2 ring-brand-amber/20"
+                  : "bg-white border-slate-200/90 shadow-subtle"
               }`}
             >
               <div>
                 {item.popular && (
-                  <span className="inline-block text-[11px] font-bold uppercase tracking-wider text-brand-terracotta bg-brand-terracotta-soft px-2.5 py-0.5 rounded-full mb-3">
+                  <span className="inline-flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-wider text-brand-amber-hover bg-brand-amber-soft px-3 py-0.5 rounded-full mb-3.5 border border-brand-amber/30 shadow-xs">
+                    <span className="w-1.5 h-1.5 rounded-full bg-brand-amber animate-pulse" />
                     Most Immediate Need
                   </span>
                 )}
 
-                <div className="w-12 h-12 rounded-xl bg-slate-50 border border-slate-100 flex items-center justify-center mb-4">
+                <div
+                  className={`w-12 h-12 rounded-xl flex items-center justify-center mb-4 border shadow-xs transition-transform duration-300 group-hover:scale-105 ${
+                    item.popular
+                      ? "bg-brand-amber-soft border-brand-amber/20"
+                      : "bg-slate-50 border-slate-100"
+                  }`}
+                >
                   {item.icon}
                 </div>
 
-                <h3 className="font-heading text-lg font-bold text-slate-900 mb-2">
+                <h3 className="font-heading text-lg font-bold text-slate-900 mb-2 leading-snug">
                   {item.title}
                 </h3>
 
@@ -95,7 +102,7 @@ export function GetInvolvedSection() {
                   variant={item.variant}
                   size="sm"
                   href={item.href}
-                  className="w-full justify-center"
+                  className="w-full justify-center shadow-xs"
                 >
                   {item.actionText}
                 </Button>

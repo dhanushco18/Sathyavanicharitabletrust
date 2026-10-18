@@ -99,31 +99,31 @@ export default function FounderPage() {
 
             {/* Right 4 Cols: Portrait Card */}
             <div className="lg:col-span-4">
-              <div className="relative rounded-3xl overflow-hidden bg-white p-3 shadow-elevated border border-slate-200 max-w-sm mx-auto">
-                <div className="relative aspect-[4/5] rounded-2xl overflow-hidden bg-brand-navy-dark">
+              <div className="relative rounded-3xl overflow-hidden bg-white/95 backdrop-blur-md p-3.5 shadow-elevated border border-slate-200 max-w-sm mx-auto card-glow-hover">
+                <div className="relative aspect-[3/4] rounded-2xl overflow-hidden bg-brand-navy-dark shadow-inner">
                   <Image
-                    src="https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=800&q=80"
-                    alt="Contextual portrait representing founder Mr. Raghu N."
+                    src="/assets/images/founder-raghu.jpg"
+                    alt={`Portrait of ${SITE_CONFIG.founderName}, Founder of Sathiyavani Charitable Trust`}
                     fill
                     priority
-                    sizes="(max-width: 768px) 100vw, 350px"
-                    className="object-cover"
+                    sizes="(max-width: 768px) 100vw, 400px"
+                    className="object-cover transition-transform duration-700 hover:scale-105"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-transparent to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/20 to-transparent" />
                   <div className="absolute bottom-4 left-4 right-4 text-white">
-                    <span className="text-[11px] font-bold uppercase tracking-wider text-brand-amber block">
+                    <span className="text-[11px] font-bold uppercase tracking-wider text-brand-amber block drop-shadow-xs">
                       Founder Profile
                     </span>
-                    <h2 className="font-heading text-xl font-extrabold text-white">
+                    <h2 className="font-heading text-xl font-extrabold text-white drop-shadow-xs">
                       {SITE_CONFIG.founderName}
                     </h2>
-                    <span className="text-xs text-slate-300 block">
-                      President, Sathiyavani Charitable Trust
+                    <span className="text-xs text-slate-200 block font-medium">
+                      Managing Trustee, Sathiyavani Charitable Trust
                     </span>
                   </div>
                 </div>
-                <p className="text-[11px] text-center text-slate-400 mt-2 italic">
-                  Note: Contextual editorial photo shown. Official center leadership portrait scheduled.
+                <p className="text-[11px] text-center text-slate-500 font-medium mt-2.5">
+                  Mr. Raghu N. at the Sathiyavani Community Center, Chennai.
                 </p>
               </div>
             </div>
