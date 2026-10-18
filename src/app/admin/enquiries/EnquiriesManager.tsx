@@ -221,6 +221,16 @@ export function EnquiriesManager({ initialInquiries }: EnquiriesManagerProps) {
             <div className="space-y-3 text-xs">
               <div className="grid grid-cols-2 gap-3 p-3 bg-slate-50 rounded-2xl border border-slate-200">
                 <div>
+                  <span className="text-slate-400 text-[10px] uppercase font-bold block">Reference ID</span>
+                  <span className="font-mono font-bold text-brand-navy">
+                    ST-{selectedInquiry.inquiry_type.substring(0, 3).toUpperCase()}-{selectedInquiry.id.slice(-6).toUpperCase()}
+                  </span>
+                </div>
+                <div>
+                  <span className="text-slate-400 text-[10px] uppercase font-bold block">Inquiry Type</span>
+                  <span className="capitalize font-semibold">{selectedInquiry.inquiry_type}</span>
+                </div>
+                <div>
                   <span className="text-slate-400 text-[10px] uppercase font-bold block">Phone</span>
                   <a href={`tel:${selectedInquiry.phone}`} className="font-semibold text-brand-navy underline">
                     {selectedInquiry.phone}
@@ -230,20 +240,43 @@ export function EnquiriesManager({ initialInquiries }: EnquiriesManagerProps) {
                   <span className="text-slate-400 text-[10px] uppercase font-bold block">Email</span>
                   <span>{selectedInquiry.email || "Not Provided"}</span>
                 </div>
-                <div>
-                  <span className="text-slate-400 text-[10px] uppercase font-bold block">Inquiry Type</span>
-                  <span className="capitalize font-semibold">{selectedInquiry.inquiry_type}</span>
-                </div>
-                <div>
+                {selectedInquiry.organization_name && (
+                  <div className="col-span-2">
+                    <span className="text-slate-400 text-[10px] uppercase font-bold block">Organization / Institution</span>
+                    <span className="font-semibold text-slate-800">{selectedInquiry.organization_name}</span>
+                  </div>
+                )}
+                <div className="col-span-2">
                   <span className="text-slate-400 text-[10px] uppercase font-bold block">Received</span>
                   <span>{new Date(selectedInquiry.created_at).toLocaleString("en-IN")}</span>
                 </div>
               </div>
 
+              {/* Workflow Metadata attributes (Volunteer, Sponsor, Partnership details) */}
+              {selectedInquiry.metadata_payload && Object.keys(selectedInquiry.metadata_payload).length > 0 && (
+                <div className="p-3 bg-amber-50/60 rounded-2xl border border-amber-200/80 space-y-1.5">
+                  <span className="text-amber-900 text-[10px] uppercase font-bold tracking-wider block">
+                    Workflow Specifications
+                  </span>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                    {Object.entries(selectedInquiry.metadata_payload).map(([key, val]) => (
+                      <div key={key} className="bg-white/80 p-2 rounded-xl border border-amber-200/50">
+                        <span className="text-[10px] uppercase text-slate-500 font-semibold block capitalize">
+                          {key.replace(/([A-Z])/g, " $1")}
+                        </span>
+                        <span className="text-xs font-bold text-slate-800">
+                          {String(val)}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
               {/* Full Inbound Message */}
               <div className="space-y-1">
                 <span className="font-bold text-slate-800">Submitted Message:</span>
-                <div className="p-3 bg-slate-50 rounded-xl border border-slate-200 text-slate-800 leading-relaxed">
+                <div className="p-3 bg-slate-50 rounded-xl border border-slate-200 text-slate-800 leading-relaxed whitespace-pre-wrap">
                   {selectedInquiry.message}
                 </div>
               </div>

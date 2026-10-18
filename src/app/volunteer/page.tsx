@@ -21,6 +21,7 @@ import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
 import { SITE_CONFIG } from "@/lib/constants";
+import { VolunteerApplicationForm } from "@/components/forms/VolunteerApplicationForm";
 
 export const metadata: Metadata = {
   title: "Volunteer With Us — Teach, Mentor & Lead | Sathiyavani Trust",
@@ -202,52 +203,50 @@ export default function VolunteerPage() {
 
             {/* Right 4 Cols: Application & Contact Card */}
             <div className="lg:col-span-4 space-y-6">
-              <Card variant="elevated" className="p-6 sm:p-7 border-brand-navy/30">
-                <span className="text-[11px] font-bold uppercase tracking-wider text-brand-navy block mb-2">
-                  Volunteer Application
-                </span>
-                <h3 className="font-heading text-xl font-bold text-slate-900 mb-2">
-                  Express Your Interest
-                </h3>
-                <p className="text-sm text-slate-600 leading-relaxed mb-6">
-                  Ready to volunteer? Contact our coordinator directly via phone or WhatsApp with
-                  your preferred subjects and weekend availability.
-                </p>
+              <Card variant="elevated" className="p-6 sm:p-7 border-brand-navy/30 space-y-4">
+                <div>
+                  <span className="text-[11px] font-bold uppercase tracking-wider text-brand-navy block mb-1">
+                    Direct Volunteer Application
+                  </span>
+                  <h3 className="font-heading text-xl font-bold text-slate-900">
+                    Apply to Volunteer
+                  </h3>
+                  <p className="text-xs text-slate-500 mt-1">
+                    Your application is transmitted directly to our coordinator desk.
+                  </p>
+                </div>
 
-                {/* Direct Action Buttons */}
-                <div className="space-y-3">
+                <VolunteerApplicationForm />
+              </Card>
+
+              {/* Direct Instant Action Option */}
+              <div className="p-6 bg-white rounded-2xl border border-slate-200 shadow-subtle space-y-3">
+                <span className="text-xs font-bold uppercase tracking-wider text-slate-500 block">
+                  Prefer Direct Discussion?
+                </span>
+                <p className="text-xs text-slate-600 leading-relaxed">
+                  Call or WhatsApp our team directly to discuss specific volunteering schedules:
+                </p>
+                <div className="space-y-2 pt-1">
                   <a
                     href={SITE_CONFIG.whatsappUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-full flex items-center justify-center gap-2 py-3 px-4 bg-[#25D366] text-white text-sm font-bold rounded-xl hover:bg-[#20BD5A] transition-colors shadow-sm"
+                    className="w-full flex items-center justify-center gap-2 py-2.5 px-3 bg-[#25D366] text-white text-xs font-bold rounded-xl hover:bg-[#20BD5A] transition-colors shadow-sm"
                   >
-                    <MessageSquare className="w-4 h-4 fill-white/20" />
+                    <MessageSquare className="w-3.5 h-3.5 fill-white/20" />
                     <span>WhatsApp Trust Coordinator</span>
                   </a>
 
                   <a
                     href={`tel:${SITE_CONFIG.rawPhone}`}
-                    className="w-full flex items-center justify-center gap-2 py-3 px-4 bg-brand-navy text-white text-sm font-bold rounded-xl hover:bg-brand-navy-light transition-colors shadow-sm"
+                    className="w-full flex items-center justify-center gap-2 py-2.5 px-3 bg-brand-navy text-white text-xs font-bold rounded-xl hover:bg-brand-navy-light transition-colors shadow-sm"
                   >
-                    <Phone className="w-4 h-4" />
+                    <Phone className="w-3.5 h-3.5" />
                     <span>Call {SITE_CONFIG.phone}</span>
                   </a>
                 </div>
-
-                {/* Technical Integration Roadmap Note */}
-                <div className="mt-6 pt-4 border-t border-slate-100 text-[11px] text-slate-500 space-y-1">
-                  <div className="flex items-center gap-1 font-semibold text-slate-700">
-                    <HelpCircle className="w-3.5 h-3.5 text-brand-amber" />
-                    <span>Portal Note (Phase 5 Pipeline):</span>
-                  </div>
-                  <p>
-                    Interactive digital application forms with automated SMS confirmations will go
-                    live during Phase 5 (Forms & Integrations). Direct phone/WhatsApp connects you
-                    immediately with trust leadership.
-                  </p>
-                </div>
-              </Card>
+              </div>
 
               {/* Location Reference */}
               <div className="p-6 bg-white rounded-2xl border border-slate-200 shadow-subtle space-y-2">

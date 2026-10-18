@@ -20,6 +20,7 @@ import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
 import { SITE_CONFIG } from "@/lib/constants";
+import { PartnershipInquiryForm } from "@/components/forms/PartnershipInquiryForm";
 
 export const metadata: Metadata = {
   title: "Corporate CSR & Institutional Partnerships | Sathiyavani Trust",
@@ -182,25 +183,36 @@ export default function PartnershipsPage() {
 
             {/* Right 4 Cols: Corporate Contact Card */}
             <div className="lg:col-span-4 space-y-6">
-              <Card variant="elevated" className="p-6 sm:p-7 border-brand-teal/40">
-                <span className="text-[11px] font-bold uppercase tracking-wider text-brand-teal block mb-2">
-                  Institutional Inquiries
-                </span>
-                <h3 className="font-heading text-xl font-bold text-slate-900 mb-2">
-                  Request a Project Proposal
-                </h3>
-                <p className="text-sm text-slate-600 leading-relaxed mb-6">
-                  Are you a CSR committee head, HR lead, or foundation representative? Contact our
-                  leadership directly to schedule an exploratory discussion or center visit.
-                </p>
+              <Card variant="elevated" className="p-6 sm:p-7 border-brand-teal/40 space-y-4">
+                <div>
+                  <span className="text-[11px] font-bold uppercase tracking-wider text-brand-teal block mb-1">
+                    Institutional Inquiries
+                  </span>
+                  <h3 className="font-heading text-xl font-bold text-slate-900">
+                    Request a Project Proposal
+                  </h3>
+                  <p className="text-xs text-slate-500 mt-1">
+                    Submit your CSR interest directly to trust leadership.
+                  </p>
+                </div>
 
-                {/* Direct Action Buttons */}
-                <div className="space-y-3">
+                <PartnershipInquiryForm />
+              </Card>
+
+              {/* Direct Instant Action Option */}
+              <div className="p-6 bg-white rounded-2xl border border-slate-200 shadow-subtle space-y-3">
+                <span className="text-xs font-bold uppercase tracking-wider text-slate-500 block">
+                  Prefer Direct Executive Contact?
+                </span>
+                <p className="text-xs text-slate-600 leading-relaxed">
+                  Call or WhatsApp our managing trustees directly to arrange an introductory meeting:
+                </p>
+                <div className="space-y-2 pt-1">
                   <a
                     href={`tel:${SITE_CONFIG.rawPhone}`}
-                    className="w-full flex items-center justify-center gap-2 py-3 px-4 bg-brand-navy text-white text-sm font-bold rounded-xl hover:bg-brand-navy-light transition-colors shadow-sm"
+                    className="w-full flex items-center justify-center gap-2 py-2.5 px-3 bg-brand-navy text-white text-xs font-bold rounded-xl hover:bg-brand-navy-light transition-colors shadow-sm"
                   >
-                    <Phone className="w-4 h-4" />
+                    <Phone className="w-3.5 h-3.5" />
                     <span>Call {SITE_CONFIG.phone}</span>
                   </a>
 
@@ -208,25 +220,13 @@ export default function PartnershipsPage() {
                     href={SITE_CONFIG.whatsappUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-full flex items-center justify-center gap-2 py-3 px-4 bg-[#25D366] text-white text-sm font-bold rounded-xl hover:bg-[#20BD5A] transition-colors shadow-sm"
+                    className="w-full flex items-center justify-center gap-2 py-2.5 px-3 bg-[#25D366] text-white text-xs font-bold rounded-xl hover:bg-[#20BD5A] transition-colors shadow-sm"
                   >
-                    <MessageSquare className="w-4 h-4 fill-white/20" />
+                    <MessageSquare className="w-3.5 h-3.5 fill-white/20" />
                     <span>WhatsApp Trust Leadership</span>
                   </a>
                 </div>
-
-                <div className="mt-6 pt-4 border-t border-slate-100 text-[11px] text-slate-500 space-y-1">
-                  <div className="flex items-center gap-1 font-semibold text-slate-700">
-                    <HelpCircle className="w-3.5 h-3.5 text-brand-amber" />
-                    <span>Formal CSR Workflow:</span>
-                  </div>
-                  <p>
-                    Formal digital proposal upload and MOU exchange portals are scheduled for
-                    implementation in Phase 5. Direct telephone and WhatsApp connect you immediately
-                    with Mr. Raghu N.
-                  </p>
-                </div>
-              </Card>
+              </div>
 
               {/* Location Card */}
               <div className="p-6 bg-white rounded-2xl border border-slate-200 shadow-subtle space-y-2">

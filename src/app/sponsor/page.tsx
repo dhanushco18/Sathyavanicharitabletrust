@@ -19,6 +19,7 @@ import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
 import { SITE_CONFIG } from "@/lib/constants";
+import { SponsorshipInquiryForm } from "@/components/forms/SponsorshipInquiryForm";
 
 export const metadata: Metadata = {
   title: "Sponsor a Student's Education — Sathiyavani Charitable Trust",
@@ -204,50 +205,51 @@ export default function SponsorPage() {
 
             {/* Right 4 Cols: Pledge Action & Contact Card */}
             <div className="lg:col-span-4 space-y-6">
-              <Card variant="elevated" className="p-6 sm:p-7 border-brand-terracotta/40">
-                <span className="text-[11px] font-bold uppercase tracking-wider text-brand-terracotta block mb-2">
-                  Direct Pledge Action
-                </span>
-                <h3 className="font-heading text-xl font-bold text-slate-900 mb-2">
-                  Pledge Student Support
-                </h3>
-                <p className="text-sm text-slate-600 leading-relaxed mb-6">
-                  Ready to sponsor a child or have questions about student requirements? Contact
-                  our coordinator directly for trust bank account and pledge details.
-                </p>
+              <Card variant="elevated" className="p-6 sm:p-7 border-brand-terracotta/40 space-y-4">
+                <div>
+                  <span className="text-[11px] font-bold uppercase tracking-wider text-brand-terracotta block mb-1">
+                    Direct Sponsorship Pledge
+                  </span>
+                  <h3 className="font-heading text-xl font-bold text-slate-900">
+                    Pledge Student Support
+                  </h3>
+                  <p className="text-xs text-slate-500 mt-1">
+                    Your pledge is routed directly to the managing trustees.
+                  </p>
+                </div>
 
-                {/* Direct Action Buttons */}
-                <div className="space-y-3">
+                <SponsorshipInquiryForm />
+              </Card>
+
+              {/* Direct Telephone / WhatsApp Option */}
+              <div className="p-6 bg-white rounded-2xl border border-slate-200 shadow-subtle space-y-3">
+                <span className="text-xs font-bold uppercase tracking-wider text-slate-500 block">
+                  Direct Bank & Account Enquiries
+                </span>
+                <p className="text-xs text-slate-600 leading-relaxed">
+                  To request official trust bank transfer details (RTGS/NEFT/IMPS) directly from the
+                  president:
+                </p>
+                <div className="space-y-2 pt-1">
                   <a
                     href={SITE_CONFIG.whatsappUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-full flex items-center justify-center gap-2 py-3 px-4 bg-[#25D366] text-white text-sm font-bold rounded-xl hover:bg-[#20BD5A] transition-colors shadow-sm"
+                    className="w-full flex items-center justify-center gap-2 py-2.5 px-3 bg-[#25D366] text-white text-xs font-bold rounded-xl hover:bg-[#20BD5A] transition-colors shadow-sm"
                   >
-                    <MessageSquare className="w-4 h-4 fill-white/20" />
+                    <MessageSquare className="w-3.5 h-3.5 fill-white/20" />
                     <span>WhatsApp Trust Coordinator</span>
                   </a>
 
                   <a
                     href={`tel:${SITE_CONFIG.rawPhone}`}
-                    className="w-full flex items-center justify-center gap-2 py-3 px-4 bg-brand-navy text-white text-sm font-bold rounded-xl hover:bg-brand-navy-light transition-colors shadow-sm"
+                    className="w-full flex items-center justify-center gap-2 py-2.5 px-3 bg-brand-navy text-white text-xs font-bold rounded-xl hover:bg-brand-navy-light transition-colors shadow-sm"
                   >
-                    <Phone className="w-4 h-4" />
+                    <Phone className="w-3.5 h-3.5" />
                     <span>Call {SITE_CONFIG.phone}</span>
                   </a>
                 </div>
-
-                {/* Payment Gateway Integrity Note */}
-                <div className="mt-6 pt-4 border-t border-slate-100 text-[11px] text-slate-500 space-y-1">
-                  <span className="font-bold text-slate-700 block">
-                    No Automated Online Checkout:
-                  </span>
-                  <p>
-                    All contributions are deposited directly into the registered Trust Current
-                    Account via RTGS/NEFT/IMPS. We do not use commercial third-party payment wallets.
-                  </p>
-                </div>
-              </Card>
+              </div>
 
               {/* Transparency Link */}
               <div className="p-6 bg-white rounded-2xl border border-slate-200 shadow-subtle space-y-2">
