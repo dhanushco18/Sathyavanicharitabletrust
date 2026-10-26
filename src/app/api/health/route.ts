@@ -13,7 +13,7 @@ export async function GET() {
     const responsePayload = {
       status: "healthy",
       timestamp: new Date().toISOString(),
-      uptimeSeconds: Math.floor(process.uptime()),
+      uptimeSeconds: typeof process?.uptime === "function" ? Math.floor(process.uptime()) : 0,
       environment: process.env.NODE_ENV || "production",
       version: "0.2.0",
       services: {
