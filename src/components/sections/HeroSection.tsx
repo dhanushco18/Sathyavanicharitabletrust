@@ -1,179 +1,174 @@
+"use client";
+
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, ShieldCheck, Sparkles, MapPin, CheckCircle2, Clock } from "lucide-react";
-import { Button } from "@/components/ui/Button";
-import { Badge } from "@/components/ui/Badge";
-import { Container } from "@/components/ui/Container";
-import { SITE_CONFIG } from "@/lib/constants";
+import { Heart, Users, GraduationCap, Sprout, ArrowRight } from "lucide-react";
+import { useLanguage } from "@/context/LanguageContext";
 
 export function HeroSection() {
+  const { t, trans } = useLanguage();
+
+  const quickPillars = [
+    {
+      title: t("heroPillarEducationTitle"),
+      description: t("heroPillarEducationDesc"),
+      icon: <GraduationCap className="w-6 h-6 text-sky-600" />,
+      iconBg: "bg-sky-100",
+      href: "/programs/education",
+    },
+    {
+      title: t("heroPillarHealthcareTitle"),
+      description: t("heroPillarHealthcareDesc"),
+      icon: <Heart className="w-6 h-6 text-rose-500 fill-rose-500/20" />,
+      iconBg: "bg-rose-100",
+      href: "/programs/child-development",
+    },
+    {
+      title: t("heroPillarLivelihoodTitle"),
+      description: t("heroPillarLivelihoodDesc"),
+      icon: <Sprout className="w-6 h-6 text-emerald-600" />,
+      iconBg: "bg-emerald-100",
+      href: "/programs/community-outreach",
+    },
+    {
+      title: t("heroPillarCommunityTitle"),
+      description: t("heroPillarCommunityDesc"),
+      icon: <Users className="w-6 h-6 text-amber-600" />,
+      iconBg: "bg-amber-100",
+      href: "/programs/community-outreach",
+    },
+  ];
+
   return (
-    <section className="relative overflow-hidden hero-mesh-gradient pt-10 pb-20 sm:pt-16 sm:pb-28 border-b border-slate-200/70">
-      {/* Subtle Background Pattern & Ambient Glows */}
-      <div
-        className="absolute inset-0 hero-dot-pattern opacity-30 pointer-events-none"
-        aria-hidden="true"
-      />
-      <div
-        className="absolute -right-24 -top-24 w-[32rem] h-[32rem] rounded-full bg-brand-amber/10 blur-3xl pointer-events-none"
-        aria-hidden="true"
-      />
-      <div
-        className="absolute -left-24 bottom-0 w-[30rem] h-[30rem] rounded-full bg-brand-navy/10 blur-3xl pointer-events-none"
-        aria-hidden="true"
-      />
+    <div className="relative w-full">
+      {/* Hero Banner Section */}
+      <section className="relative w-full min-h-[480px] sm:min-h-[540px] lg:min-h-[620px] flex items-center overflow-hidden">
+        {/* Background Photo */}
+        <div className="absolute inset-0 z-0">
+          <Image
+            src="/assets/images/hero-children.jpg"
+            alt="Joyful Indian school children smiling warmly at Sathiyavani Charitable Trust learning center"
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover object-center sm:object-[center_35%]"
+          />
+          {/* Gradient Overlay for high text contrast */}
+          <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/55 to-black/20 sm:to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/20" />
+        </div>
 
-      <Container className="relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-10 items-center">
-          {/* Left Column: Mission Narrative (7 cols) */}
-          <div className="lg:col-span-7 space-y-6 text-center lg:text-left">
-            {/* Context Badge */}
-            <div className="inline-flex items-center gap-2">
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-navy-soft/80 border border-brand-navy/20 text-brand-navy text-xs font-bold tracking-wide shadow-xs">
-                <MapPin className="w-3.5 h-3.5 text-brand-navy shrink-0" aria-hidden="true" />
-                <span>Grassroots Community Initiative • Chennai</span>
-                <span className="w-1.5 h-1.5 rounded-full bg-brand-navy animate-pulse" />
-              </div>
-            </div>
+        {/* Content Container */}
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full py-16 sm:py-20 lg:py-28">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+            {/* Left Headline & CTAs (8 cols) */}
+            <div className="lg:col-span-8 text-left space-y-4 sm:space-y-5">
+              {/* Top Tagline */}
+              <span className="inline-block text-amber-400 font-bold text-xs sm:text-sm tracking-widest uppercase font-heading drop-shadow-sm">
+                {t("heroTagline")}
+              </span>
 
-            {/* Display Headline */}
-            <h1 className="font-heading text-3xl sm:text-5xl lg:text-6xl font-extrabold text-slate-900 tracking-tight leading-[1.12]">
-              Every child deserves an{" "}
-              <span className="relative inline-block">
-                <span className="bg-gradient-to-r from-brand-navy via-brand-navy-light to-brand-terracotta bg-clip-text text-transparent">
-                  unbroken path
+              {/* Main Headline */}
+              <h1 className="font-serif text-3xl sm:text-5xl lg:text-6xl font-bold text-white tracking-tight leading-[1.12] drop-shadow-md">
+                {t("heroTitle1")}<br />
+                {t("heroTitle2")}<br />
+                <span className="text-amber-400 font-serif font-bold">
+                  {t("heroTitle3")}
                 </span>
-                <span
-                  className="absolute left-0 -bottom-1.5 w-full h-2.5 bg-brand-amber/25 rounded-full -z-10"
-                  aria-hidden="true"
-                />
-              </span>{" "}
-              to learning and dignity.
-            </h1>
+              </h1>
 
-            {/* Supporting Copy */}
-            <p className="text-base sm:text-lg text-slate-600 max-w-2xl mx-auto lg:mx-0 leading-relaxed font-normal">
-              From teaching children on roadside platforms during the pandemic to running a
-              dedicated after-school tuition center, Sathiyavani Charitable Trust provides free
-              academic guidance, student sponsorships, and community care for underserved families.
-            </p>
+              {/* Subtitle */}
+              <p className="text-white/90 text-sm sm:text-base lg:text-lg max-w-xl font-normal leading-relaxed drop-shadow-sm">
+                {t("heroSubtitle")}
+              </p>
 
-            {/* Dual CTAs */}
-            <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2">
-              <Button
-                variant="primary"
-                size="lg"
-                href="/programs"
-                icon={<ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />}
-                iconPosition="right"
-                className="w-full sm:w-auto shadow-md hover:shadow-lg transition-all duration-300"
-              >
-                Explore Our Programmes
-              </Button>
+              {/* Action Buttons */}
+              <div className="flex flex-wrap items-center gap-3.5 pt-2 sm:pt-4">
+                <Link
+                  href="/sponsor"
+                  className="inline-flex items-center gap-2 px-6 sm:px-7 py-3 rounded-full text-white font-bold text-sm sm:text-base bg-gradient-to-r from-rose-500 via-rose-600 to-pink-600 hover:from-rose-600 hover:to-pink-700 shadow-lg hover:shadow-xl transition-all duration-200 transform hover:-translate-y-0.5"
+                >
+                  <Heart className="w-4 h-4 fill-white text-white" aria-hidden="true" />
+                  <span>{t("actionDonateNow")}</span>
+                </Link>
 
-              <Button
-                variant="secondary"
-                size="lg"
-                href="/get-involved"
-                className="w-full sm:w-auto border-slate-300/80 hover:bg-slate-50 transition-all duration-300"
-              >
-                Get Involved & Sponsor
-              </Button>
-            </div>
-
-            {/* Verification & Trust Micro-Badges */}
-            <div className="pt-6 border-t border-slate-200/80 flex flex-wrap items-center justify-center lg:justify-start gap-y-2.5 gap-x-6 text-xs text-slate-600 font-medium">
-              <div className="flex items-center gap-2 bg-emerald-50 text-emerald-800 px-3 py-1.5 rounded-lg border border-emerald-200/80">
-                <ShieldCheck className="w-4 h-4 text-emerald-600 shrink-0" aria-hidden="true" />
-                <span className="font-semibold">100% Free Tuition for Children</span>
-              </div>
-              <div className="flex items-center gap-2 bg-amber-50 text-amber-900 px-3 py-1.5 rounded-lg border border-amber-200/80">
-                <Sparkles className="w-4 h-4 text-amber-600 shrink-0" aria-hidden="true" />
-                <span className="font-semibold">Active Service Since 2020</span>
+                <Link
+                  href="/get-involved"
+                  className="inline-flex items-center gap-2 px-6 sm:px-7 py-3 rounded-full text-white font-bold text-sm sm:text-base bg-black/40 hover:bg-black/60 border border-white/40 backdrop-blur-md shadow-md hover:shadow-lg transition-all duration-200 transform hover:-translate-y-0.5"
+                >
+                  <Users className="w-4 h-4 text-white" aria-hidden="true" />
+                  <span>{t("navGetInvolved")}</span>
+                </Link>
               </div>
             </div>
-          </div>
 
-          {/* Right Column: Authentic Editorial Imagery (5 cols) */}
-          <div className="lg:col-span-5 relative">
-            <div className="relative mx-auto max-w-md lg:max-w-none">
-              {/* Primary Visual Card with Glassmorphic Frame */}
-              <div className="relative rounded-3xl overflow-hidden bg-white/90 backdrop-blur-md p-3.5 shadow-elevated border border-slate-200/90 card-glow-hover">
-                <div className="relative aspect-[4/3] rounded-2xl overflow-hidden bg-brand-navy-dark shadow-inner">
-                  {/* High Quality Local Imagery */}
-                  <Image
-                    src="/assets/images/tuition-learning.jpg"
-                    alt="Schoolchildren studying with notebooks and pencils at the Sathiyavani Tuition Center in Chennai"
-                    fill
-                    priority
-                    sizes="(max-width: 768px) 100vw, 550px"
-                    className="object-cover transition-transform duration-700 hover:scale-105"
-                  />
-                  {/* Gradient overlay for contrast */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/85 via-slate-900/20 to-transparent" />
+            {/* Right Side: Floating Handwritten Sticker Badge */}
+            <div className="hidden lg:flex lg:col-span-4 justify-end relative">
+              <div className="relative transform -rotate-6 hover:rotate-0 transition-transform duration-300">
+                <div className="relative bg-[#FFFBF0] border-2 border-amber-200/90 shadow-2xl rounded-2xl px-6 py-5 text-center min-w-[210px] backdrop-blur-sm">
+                  <div className="absolute -top-3 left-1/2 -translate-x-1/2 w-10 h-3 bg-amber-200/80 rounded-sm shadow-xs" />
 
-                  {/* Top-Right Floating Live Indicator Badge */}
-                  <div className="absolute top-3.5 right-3.5 bg-slate-900/80 backdrop-blur-md text-white text-[11px] font-semibold px-3 py-1 rounded-full flex items-center gap-2 border border-white/20 shadow-sm">
-                    <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-                    <span>Live Center • 5:30 – 8:00 PM</span>
+                  <div className="font-handwriting text-3xl sm:text-4xl text-slate-900 font-bold leading-tight">
+                    {trans("Small", "சிறு")} <span className="text-rose-500 font-sans inline-block align-middle">♡</span><br />
+                    {trans("Actions", "முயற்சி")}<br />
+                    <span className="text-slate-900">{trans("Big Impact", "பெரும் மாற்றம்")}</span>
                   </div>
 
-                  {/* Caption badge overlay */}
-                  <div className="absolute bottom-4 left-4 right-4 text-white">
-                    <span className="text-[11px] font-bold uppercase tracking-wider text-brand-amber block drop-shadow-xs">
-                      Core Mission
-                    </span>
-                    <p className="text-sm font-semibold leading-snug text-white mt-0.5 drop-shadow-xs">
-                      "No child should be denied education due to financial hardship."
-                    </p>
-                    <span className="text-xs text-slate-300 block mt-1 font-medium">
-                      — {SITE_CONFIG.founderName}, Founder
-                    </span>
-                  </div>
-                </div>
-
-                {/* Sub-card snippet with center detail */}
-                <div className="p-4 bg-gradient-to-r from-brand-canvas to-white rounded-xl mt-3 flex items-center justify-between border border-slate-200/80">
-                  <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-xl bg-brand-navy-soft flex items-center justify-center shrink-0 border border-brand-navy/10 shadow-xs">
-                      <Image
-                        src="/assets/brand/logo.png"
-                        alt="Sathiyavani Trust Emblem"
-                        width={26}
-                        height={26}
-                        className="object-contain"
-                      />
-                    </div>
-                    <div>
-                      <span className="text-xs font-bold text-slate-900 block">
-                        Library Learning Center
-                      </span>
-                      <span className="text-[11px] text-slate-500 block">
-                        Evening classes Monday – Friday
-                      </span>
-                    </div>
-                  </div>
-                  <Link
-                    href="/programs/education"
-                    className="inline-flex items-center gap-1 text-xs font-bold text-brand-navy hover:text-brand-terracotta transition-colors group"
+                  <svg
+                    className="w-24 h-3 mx-auto mt-2 text-amber-500 stroke-current"
+                    viewBox="0 0 100 12"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
                   >
-                    <span>Details</span>
-                    <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5" />
-                  </Link>
+                    <path
+                      d="M2 7C25 2 70 2 98 8"
+                      strokeWidth="3.5"
+                      strokeLinecap="round"
+                    />
+                  </svg>
                 </div>
-              </div>
-
-              {/* Verified Trust Statement */}
-              <div className="flex items-center justify-center gap-1.5 text-[11px] font-medium text-slate-500 mt-3">
-                <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
-                <span>Chennai Community Learning Center • 100% Grassroots Volunteer Driven</span>
               </div>
             </div>
           </div>
         </div>
-      </Container>
-    </section>
+      </section>
+
+      {/* Floating 4 Quick Feature Cards */}
+      <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-14 sm:-mt-18 lg:-mt-22">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+          {quickPillars.map((pillar) => (
+            <div
+              key={pillar.title}
+              className="bg-white rounded-2xl p-5 sm:p-6 shadow-card hover:shadow-elevated border border-slate-100 transition-all duration-300 transform hover:-translate-y-1 flex flex-col justify-between"
+            >
+              <div>
+                <div
+                  className={`w-12 h-12 rounded-full ${pillar.iconBg} flex items-center justify-center mb-4 shadow-xs`}
+                >
+                  {pillar.icon}
+                </div>
+
+                <h3 className="font-heading text-lg font-bold text-slate-900 mb-1.5">
+                  {pillar.title}
+                </h3>
+
+                <p className="text-xs sm:text-sm text-slate-600 leading-relaxed mb-4">
+                  {pillar.description}
+                </p>
+              </div>
+
+              <Link
+                href={pillar.href}
+                className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-slate-900 hover:text-amber-600 transition-colors group pt-2"
+              >
+                <span>{trans("Learn More", "மேலும் அறிய")}</span>
+                <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
+              </Link>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
   );
 }
-

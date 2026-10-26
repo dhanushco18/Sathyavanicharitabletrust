@@ -13,6 +13,11 @@ const nextConfig = {
   async redirects() {
     return [
       {
+        source: '/donate',
+        destination: '/sponsor',
+        permanent: true,
+      },
+      {
         source: '/education',
         destination: '/programs/education',
         permanent: true,

@@ -1,89 +1,90 @@
+"use client";
+
 import React from "react";
-import Link from "next/link";
-import { ArrowRight, ShieldAlert, FileCheck, Info } from "lucide-react";
-import { Container } from "@/components/ui/Container";
-import { SectionHeading } from "@/components/ui/SectionHeading";
-import { ImpactCard } from "@/components/ui/ImpactCard";
-import { VERIFIED_IMPACT_BASELINE, DIWALI_GROWTH_HISTORY } from "@/lib/constants";
+import { Users, BookOpen, Heart, Sprout } from "lucide-react";
+import { useLanguage } from "@/context/LanguageContext";
 
 export function ImpactSection() {
+  const { t } = useLanguage();
+
+  const stats = [
+    {
+      value: "2,500+",
+      label: t("impactStatLives"),
+      icon: <Users className="w-8 h-8 sm:w-9 sm:h-9 text-emerald-700" />,
+    },
+    {
+      value: "700+",
+      label: t("impactStatChildren"),
+      icon: <BookOpen className="w-8 h-8 sm:w-9 sm:h-9 text-sky-700" />,
+    },
+    {
+      value: "1,200+",
+      label: t("impactStatMedical"),
+      icon: <Heart className="w-8 h-8 sm:w-9 sm:h-9 text-rose-500 fill-rose-500" />,
+    },
+    {
+      value: "350+",
+      label: t("impactStatFamilies"),
+      icon: <Sprout className="w-8 h-8 sm:w-9 sm:h-9 text-amber-600" />,
+    },
+  ];
+
   return (
-    <section className="py-16 sm:py-24 bg-white border-b border-slate-200/60">
-      <Container>
-        {/* Section Header */}
-        <div className="max-w-3xl mb-12">
-          <SectionHeading
-            category="Accountability & Evidence"
-            categoryVariant="teal"
-            title="Measured Impact, Grounded in Real Verification"
-            description="We believe social trust is earned through transparency. Rather than displaying unverified estimates, we report documented milestone records validated by physical registers and operational timelines."
-            className="mb-0"
-          />
-        </div>
+    <section className="relative w-full pt-12 pb-10 sm:pt-16 sm:pb-14 mt-8 sm:mt-10 mb-6 bg-[#EDF7F2]">
+      {/* Top gentle wave */}
+      <div className="absolute -top-5 left-0 right-0 h-6 overflow-hidden leading-none pointer-events-none">
+        <svg
+          viewBox="0 0 1200 120"
+          preserveAspectRatio="none"
+          className="relative block w-full h-6 fill-[#EDF7F2]"
+        >
+          <path d="M0,0 C200,60 400,-20 600,40 C800,100 1000,10 1200,30 L1200,120 L0,120 Z" />
+        </svg>
+      </div>
 
-        {/* 4 Documented Metric Cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
-          {VERIFIED_IMPACT_BASELINE.map((metric) => (
-            <ImpactCard key={metric.id} metric={metric} />
-          ))}
-        </div>
+      {/* Bottom gentle wave */}
+      <div className="absolute -bottom-5 left-0 right-0 h-6 overflow-hidden leading-none pointer-events-none rotate-180">
+        <svg
+          viewBox="0 0 1200 120"
+          preserveAspectRatio="none"
+          className="relative block w-full h-6 fill-[#EDF7F2]"
+        >
+          <path d="M0,0 C200,60 400,-20 600,40 C800,100 1000,10 1200,30 L1200,120 L0,120 Z" />
+        </svg>
+      </div>
 
-        {/* Historical Distribution Progression Panel */}
-        <div className="bg-brand-canvas rounded-2xl border border-slate-200 p-6 sm:p-8">
-          <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6 pb-4 border-b border-slate-200">
-            <div>
-              <h3 className="font-heading text-lg sm:text-xl font-bold text-slate-900">
-                Diwali Joy Initiative — Documented Beneficiary Growth
-              </h3>
-              <p className="text-xs sm:text-sm text-slate-500 mt-1">
-                Annual gift kits (festive attire, sweets, learning stationery) delivered to underserved children.
-              </p>
-            </div>
-            <div className="flex items-center gap-1.5 text-xs text-slate-500 bg-white px-3 py-1.5 rounded-lg border border-slate-200 self-start md:self-auto">
-              <Info className="w-4 h-4 text-brand-navy" aria-hidden="true" />
-              <span>Source: Annual Distribution Ledgers</span>
-            </div>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 items-center">
+          {/* Left Title: "Our Impact" */}
+          <div className="lg:col-span-3 text-center lg:text-left flex flex-col items-center lg:items-start justify-center">
+            <h2 className="font-handwriting text-4xl sm:text-5xl font-bold text-slate-800 tracking-wide transform -rotate-3">
+              {t("impactTitle")}
+            </h2>
+            <div className="w-20 h-1.5 bg-amber-400 rounded-full mt-1 transform -rotate-1 shadow-xs" />
           </div>
 
-          {/* Responsive Growth Bar / Stepper */}
-          <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-3">
-            {DIWALI_GROWTH_HISTORY.map((item) => (
+          {/* Right: 4 Stat Items */}
+          <div className="lg:col-span-9 grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-4 items-center">
+            {stats.map((stat, idx) => (
               <div
-                key={item.year}
-                className={`p-3.5 rounded-xl border text-center transition-all ${
-                  item.year === "2025"
-                    ? "bg-amber-50/70 border-dashed border-amber-300"
-                    : "bg-white border-slate-200 shadow-xs"
-                }`}
+                key={idx}
+                className="flex items-center gap-3 sm:gap-4 justify-center lg:justify-start"
               >
-                <span className="text-xs font-semibold text-slate-500 block">
-                  {item.year}
-                </span>
-                <span className="font-heading text-xl sm:text-2xl font-extrabold text-brand-navy block my-1">
-                  {item.count}
-                </span>
-                <span className="text-[11px] text-slate-500 line-clamp-1" title={item.status}>
-                  {item.status}
-                </span>
+                <div className="shrink-0">{stat.icon}</div>
+                <div className="flex flex-col">
+                  <span className="font-heading text-2xl sm:text-3xl font-extrabold text-slate-900 leading-none">
+                    {stat.value}
+                  </span>
+                  <span className="text-xs sm:text-sm font-semibold text-slate-600 mt-1 leading-tight">
+                    {stat.label}
+                  </span>
+                </div>
               </div>
             ))}
           </div>
-
-          {/* Audit & Transparency Footnote */}
-          <div className="mt-6 pt-4 border-t border-slate-200/80 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs text-slate-500">
-            <p>
-              * Note: The 2025 figure represents an active mobilization target for upcoming drives, not a completed tally.
-            </p>
-            <Link
-              href="/impact"
-              className="font-bold text-brand-navy hover:text-brand-terracotta transition-colors inline-flex items-center gap-1 shrink-0"
-            >
-              <span>Explore Detailed Social Audit</span>
-              <ArrowRight className="w-3.5 h-3.5" />
-            </Link>
-          </div>
         </div>
-      </Container>
+      </div>
     </section>
   );
 }

@@ -44,6 +44,8 @@ const config: Config = {
       fontFamily: {
         heading: ["var(--font-heading)", "Plus Jakarta Sans", "Outfit", "sans-serif"],
         body: ["var(--font-body)", "Inter", "-apple-system", "BlinkMacSystemFont", "sans-serif"],
+        handwriting: ["var(--font-handwriting)", "Caveat", "Kalam", "cursive"],
+        serif: ["var(--font-serif)", "Playfair Display", "Georgia", "Cambria", "serif"],
       },
       boxShadow: {
         subtle: "0 1px 3px 0 rgba(15, 76, 129, 0.04), 0 1px 2px -1px rgba(15, 76, 129, 0.04)",

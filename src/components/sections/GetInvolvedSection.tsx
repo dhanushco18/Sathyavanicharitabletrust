@@ -1,116 +1,72 @@
+"use client";
+
 import React from "react";
+import Image from "next/image";
 import Link from "next/link";
-import { UserCheck, Heart, Building2, Gift, ArrowRight } from "lucide-react";
-import { Container } from "@/components/ui/Container";
-import { SectionHeading } from "@/components/ui/SectionHeading";
-import { Button } from "@/components/ui/Button";
+import { Heart, Users } from "lucide-react";
+import { useLanguage } from "@/context/LanguageContext";
 
 export function GetInvolvedSection() {
-  const pathways = [
-    {
-      icon: <Heart className="w-6 h-6 text-brand-terracotta" />,
-      title: "Sponsor a Student",
-      description:
-        "Fund school fees, textbooks, uniforms, and learning kits for children whose families face financial distress.",
-      actionText: "Explore Sponsorship",
-      href: "/sponsor",
-      variant: "primary" as const,
-      popular: true,
-    },
-    {
-      icon: <UserCheck className="w-6 h-6 text-brand-navy" />,
-      title: "Volunteer as a Tutor",
-      description:
-        "Dedicate weekend hours to mentor students in math, science, English, or extracurricular sports and arts.",
-      actionText: "Apply as Volunteer",
-      href: "/volunteer",
-      variant: "secondary" as const,
-      popular: false,
-    },
-    {
-      icon: <Building2 className="w-6 h-6 text-brand-teal" />,
-      title: "Corporate CSR Partnerships",
-      description:
-        "Collaborate with our trust on measurable education and biodiversity programs backed by verifiable reporting.",
-      actionText: "Partner With Us",
-      href: "/partnerships",
-      variant: "secondary" as const,
-      popular: false,
-    },
-    {
-      icon: <Gift className="w-6 h-6 text-brand-amber" />,
-      title: "Support Festive Drives",
-      description:
-        "Contribute new clothing, sweets, and stationery kits for our annual Diwali Joy distribution across Chennai.",
-      actionText: "Support Festival Joy",
-      href: "/programs/festival-support",
-      variant: "secondary" as const,
-      popular: false,
-    },
-  ];
+  const { t } = useLanguage();
 
   return (
-    <section className="py-16 sm:py-24 bg-brand-canvas border-b border-slate-200/60">
-      <Container>
-        <SectionHeading
-          category="Join Our Mission"
-          categoryVariant="terracotta"
-          title="Meaningful Ways to Create Impact"
-          description="Whether through your time, sponsorship, or institutional collaboration, your support ensures another child remains in school."
-          align="center"
+    <section className="relative w-full py-20 sm:py-24 my-6 overflow-hidden">
+      {/* Background Photo */}
+      <div className="absolute inset-0 z-0">
+        <Image
+          src="/assets/images/cta-hands-sapling.jpg"
+          alt="Hands gently holding soil with green sprout seedling representing community hope"
+          fill
+          sizes="100vw"
+          className="object-cover object-center"
         />
+        <div className="absolute inset-0 bg-black/70 sm:bg-black/65" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/60" />
+      </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {pathways.map((item, idx) => (
-            <div
-              key={idx}
-              className={`relative flex flex-col justify-between p-6 sm:p-7 rounded-2xl border transition-all duration-300 card-glow-hover ${
-                item.popular
-                  ? "bg-gradient-to-b from-brand-amber-soft/50 via-white to-white border-brand-amber/50 shadow-card ring-2 ring-brand-amber/20"
-                  : "bg-white border-slate-200/90 shadow-subtle"
-              }`}
-            >
-              <div>
-                {item.popular && (
-                  <span className="inline-flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-wider text-brand-amber-hover bg-brand-amber-soft px-3 py-0.5 rounded-full mb-3.5 border border-brand-amber/30 shadow-xs">
-                    <span className="w-1.5 h-1.5 rounded-full bg-brand-amber animate-pulse" />
-                    Most Immediate Need
-                  </span>
-                )}
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+          {/* Main Headline & CTAs (9 cols) */}
+          <div className="lg:col-span-9 text-center lg:text-left space-y-4">
+            <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-white tracking-tight leading-tight">
+              {t("getInvolvedHeading")}
+            </h2>
 
-                <div
-                  className={`w-12 h-12 rounded-xl flex items-center justify-center mb-4 border shadow-xs transition-transform duration-300 group-hover:scale-105 ${
-                    item.popular
-                      ? "bg-brand-amber-soft border-brand-amber/20"
-                      : "bg-slate-50 border-slate-100"
-                  }`}
-                >
-                  {item.icon}
-                </div>
+            <p className="text-white/85 text-sm sm:text-base max-w-2xl leading-relaxed">
+              {t("getInvolvedSubhead")}
+            </p>
 
-                <h3 className="font-heading text-lg font-bold text-slate-900 mb-2 leading-snug">
-                  {item.title}
-                </h3>
+            <div className="flex flex-wrap items-center justify-center lg:justify-start gap-3.5 pt-3">
+              <Link
+                href="/sponsor"
+                className="inline-flex items-center gap-2 px-6 sm:px-7 py-3 rounded-full text-white font-bold text-xs sm:text-sm bg-gradient-to-r from-rose-500 via-rose-600 to-pink-600 hover:from-rose-600 hover:to-pink-700 shadow-lg hover:shadow-xl transition-all duration-200 transform hover:-translate-y-0.5"
+              >
+                <Heart className="w-4 h-4 fill-white text-white" aria-hidden="true" />
+                <span>{t("actionDonateNow")}</span>
+              </Link>
 
-                <p className="text-sm text-slate-600 leading-relaxed mb-6">
-                  {item.description}
-                </p>
-              </div>
-
-              <div className="pt-4 border-t border-slate-100 mt-auto">
-                <Button
-                  variant={item.variant}
-                  size="sm"
-                  href={item.href}
-                  className="w-full justify-center shadow-xs"
-                >
-                  {item.actionText}
-                </Button>
-              </div>
+              <Link
+                href="/volunteer"
+                className="inline-flex items-center gap-2 px-6 sm:px-7 py-3 rounded-full text-white font-bold text-xs sm:text-sm bg-black/45 hover:bg-black/65 border border-white/40 backdrop-blur-md shadow-md hover:shadow-lg transition-all duration-200 transform hover:-translate-y-0.5"
+              >
+                <Users className="w-4 h-4 text-white" aria-hidden="true" />
+                <span>{t("actionBecomeVolunteer")}</span>
+              </Link>
             </div>
-          ))}
+          </div>
+
+          {/* Right Script Accent Badge */}
+          <div className="lg:col-span-3 flex justify-center lg:justify-end">
+            <div className="text-center lg:text-right transform -rotate-6 hover:rotate-0 transition-transform duration-300">
+              <span className="font-handwriting text-3xl sm:text-4xl text-amber-200 font-bold leading-tight drop-shadow-md block">
+                {t("togetherTomorrowBadge1")}<br />
+                {t("togetherTomorrowBadge2")}
+              </span>
+              <div className="text-rose-400 text-2xl mt-1">♡</div>
+            </div>
+          </div>
         </div>
-      </Container>
+      </div>
     </section>
   );
 }

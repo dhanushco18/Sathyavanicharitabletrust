@@ -1,8 +1,11 @@
+"use client";
+
 import React from "react";
 import Link from "next/link";
 import { ChevronRight, Home } from "lucide-react";
 import { BreadcrumbItem } from "@/lib/types";
 import { cn } from "@/lib/utils";
+import { useLanguage } from "@/context/LanguageContext";
 
 interface BreadcrumbsProps {
   items: BreadcrumbItem[];
@@ -11,8 +14,10 @@ interface BreadcrumbsProps {
 }
 
 export function Breadcrumbs({ items, className, inverted = false }: BreadcrumbsProps) {
+  const { trans } = useLanguage();
+
   return (
-    <nav aria-label="Breadcrumb" className={cn("py-3 text-xs sm:text-sm", className)}>
+    <nav aria-label={trans("Breadcrumb", "வழிசெலுத்தல் தடம்")} className={cn("py-3 text-xs sm:text-sm", className)}>
       <ol className="flex flex-wrap items-center gap-1.5 sm:gap-2">
         <li className="inline-flex items-center">
           <Link
@@ -25,7 +30,7 @@ export function Breadcrumbs({ items, className, inverted = false }: BreadcrumbsP
             )}
           >
             <Home className="w-3.5 h-3.5" aria-hidden="true" />
-            <span className="sr-only">Home</span>
+            <span className="sr-only">{trans("Home", "முகப்பு")}</span>
           </Link>
         </li>
 

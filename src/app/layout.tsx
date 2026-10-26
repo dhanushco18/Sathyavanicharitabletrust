@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
-import { Plus_Jakarta_Sans, Inter } from "next/font/google";
+import { Plus_Jakarta_Sans, Inter, Caveat, Playfair_Display } from "next/font/google";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { SITE_CONFIG } from "@/lib/constants";
+import { LanguageProvider } from "@/context/LanguageContext";
 import "./globals.css";
 
 const plusJakartaSans = Plus_Jakarta_Sans({
@@ -17,6 +18,20 @@ const inter = Inter({
   variable: "--font-body",
   display: "swap",
   weight: ["400", "500", "600", "700"],
+});
+
+const caveat = Caveat({
+  subsets: ["latin"],
+  variable: "--font-handwriting",
+  display: "swap",
+  weight: ["500", "600", "700"],
+});
+
+const playfair = Playfair_Display({
+  subsets: ["latin"],
+  variable: "--font-serif",
+  display: "swap",
+  weight: ["600", "700", "800"],
 });
 
 export const metadata: Metadata = {
@@ -91,7 +106,7 @@ export default function RootLayout({
   };
 
   return (
-    <html lang="en" className={`${plusJakartaSans.variable} ${inter.variable}`}>
+    <html lang="en" className={`${plusJakartaSans.variable} ${inter.variable} ${caveat.variable} ${playfair.variable}`}>
       <head>
         <script
           type="application/ld+json"
@@ -107,11 +122,13 @@ export default function RootLayout({
           Skip to main content
         </a>
 
-        <Header />
-        <main id="main-content" className="flex-1 flex flex-col">
-          {children}
-        </main>
-        <Footer />
+        <LanguageProvider>
+          <Header />
+          <main id="main-content" className="flex-1 flex flex-col">
+            {children}
+          </main>
+          <Footer />
+        </LanguageProvider>
       </body>
     </html>
   );

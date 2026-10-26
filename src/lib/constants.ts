@@ -47,9 +47,14 @@ export const MAIN_NAV_ITEMS: NavItem[] = [
     ],
   },
   {
-    label: "Programmes",
+    label: "Programs",
     href: "/programs",
     children: [
+      {
+        label: "All Programs Overview",
+        href: "/programs",
+        description: "Explore all core community & educational initiatives.",
+      },
       {
         label: "Free Education",
         href: "/programs/education",
@@ -117,6 +122,14 @@ export const MAIN_NAV_ITEMS: NavItem[] = [
         description: "Align CSR allocations with measurable education outcomes.",
       },
     ],
+  },
+  {
+    label: "Impact",
+    href: "/impact",
+  },
+  {
+    label: "Stories",
+    href: "/stories",
   },
   {
     label: "Contact",

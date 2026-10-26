@@ -1,320 +1,519 @@
+"use client";
+
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { Metadata } from "next";
 import {
-  ShieldCheck,
-  Heart,
-  BookOpen,
-  Calendar,
+  Target,
+  Eye,
+  Check,
   Users,
-  Compass,
+  BookOpen,
+  Activity,
+  Sprout,
   ArrowRight,
-  MapPin,
-  CheckCircle2,
+  Heart,
+  ChevronRight,
 } from "lucide-react";
-import { Container } from "@/components/ui/Container";
-import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
-import { Badge } from "@/components/ui/Badge";
-import { Button } from "@/components/ui/Button";
-import { Card } from "@/components/ui/Card";
-import { SITE_CONFIG, PROGRAMMES_LIST } from "@/lib/constants";
-
-export const metadata: Metadata = {
-  title: "About the Trust — History, Purpose & Community Roots",
-  description:
-    "Learn about Sathiyavani Charitable Trust, our grassroots origins during the COVID-19 pandemic, and our mission to provide free education and community welfare in Chennai.",
-};
+import { useLanguage } from "@/context/LanguageContext";
 
 export default function AboutPage() {
-  const breadcrumbItems = [{ label: "About Us" }];
+  const { trans } = useLanguage();
 
-  const timelineMilestones = [
+  const foundationPillars = [
     {
-      year: "2020",
-      title: "Pandemic Roadside Initiative",
-      desc: "When pandemic lockdowns closed schools, Mr. Raghu N. noticed children living on roadside platforms falling behind without access to digital classrooms. He began daily informal tutoring sessions on the pavement.",
-      tag: "Grassroots Inception",
+      title: trans("Our Mission", "எங்கள் நோக்கம்"),
+      description: trans(
+        "To uplift underprivileged communities through quality education, healthcare, livelihood opportunities and holistic development.",
+        "தரமான கல்வி, மருத்துவம், வாழ்வாதார வாய்ப்புகள் மற்றும் முழுமையான வளர்ச்சி மூலம் பின்தங்கிய சமூகங்களை மேம்படுத்துதல்."
+      ),
+      icon: <Target className="w-5 h-5 sm:w-6 sm:h-6 text-rose-500" />,
+      iconBg: "bg-rose-100",
     },
     {
-      year: "2021",
-      title: "Temple & Community Shelter",
-      desc: "To protect students from weather extremes and monsoon rains, classes moved into covered local temple spaces with volunteer support from neighborhood youth.",
-      tag: "Expanded Sheltered Learning",
+      title: trans("Our Vision", "எங்கள் தொலைநோக்கு"),
+      description: trans(
+        "A society where every individual, regardless of background, has the opportunity to live a healthy, dignified and empowered life.",
+        "பின்னணி பாராமல் ஒவ்வொரு நபரும் ஆரோக்கியமான, கண்ணியமான மற்றும் அதிகாரம் பெற்ற வாழ்க்கையை வாழும் ஒரு சமூகம்."
+      ),
+      icon: <Eye className="w-5 h-5 sm:w-6 sm:h-6 text-sky-600" />,
+      iconBg: "bg-sky-100",
+    },
+    {
+      title: trans("Our Values", "எங்கள் விழுமியங்கள்"),
+      isValuesList: true,
+      icon: (
+        <span className="text-emerald-600 font-bold text-lg leading-none">
+          <Heart className="w-5 h-5 sm:w-6 sm:h-6 text-emerald-600 fill-emerald-600/20" />
+        </span>
+      ),
+      iconBg: "bg-emerald-100",
+      valuesCol1: [
+        trans("Compassion", "அன்பு"),
+        trans("Integrity", "நேர்மை"),
+        trans("Inclusivity", "அனைவரையும் உள்ளடக்குதல்"),
+      ],
+      valuesCol2: [
+        trans("Empowerment", "அதிகாரமளித்தல்"),
+        trans("Transparency", "வெளிப்படைத்தன்மை"),
+        trans("Community First", "சமூகமே முதன்மை"),
+      ],
+    },
+    {
+      title: trans("Our Approach", "எங்கள் அணுகுமுறை"),
+      description: trans(
+        "We work with communities, government partners, volunteers and well-wishers to create sustainable and measurable change.",
+        "நிலையான மற்றும் அளவிடக்கூடிய மாற்றத்தை உருவாக்க சமூகம், அரசு, தன்னார்வலர்கள் மற்றும் நலம் விரும்பிகளுடன் இணைந்து பணியாற்றுகிறோம்."
+      ),
+      icon: <Users className="w-5 h-5 sm:w-6 sm:h-6 text-amber-600" />,
+      iconBg: "bg-amber-100",
+    },
+  ];
+
+  const journeyMilestones = [
+    {
+      year: "2015",
+      badgeColor: "bg-rose-500",
+      lineColor: "border-rose-300",
+      title: trans("The Beginning", "ஆரம்பம்"),
+      desc: trans(
+        "Sathiyavani Charitable Trust was established with a vision to serve the community.",
+        "சமூகத்திற்கு சேவை செய்யும் தொலைநோக்குடன் சத்தியவாணி அறக்கட்டளை தொடங்கப்பட்டது."
+      ),
+    },
+    {
+      year: "2017",
+      badgeColor: "bg-sky-500",
+      lineColor: "border-sky-300",
+      title: trans("Expanding Reach", "சேவை விரிவாக்கம்"),
+      desc: trans(
+        "Launched education and healthcare initiatives in local communities.",
+        "உள்ளூர் சமூகங்களில் கல்வி மற்றும் மருத்துவ முயற்சிகள் தொடங்கப்பட்டன."
+      ),
+    },
+    {
+      year: "2019",
+      badgeColor: "bg-emerald-500",
+      lineColor: "border-emerald-300",
+      title: trans("Growing Impact", "வளரும் தாக்கம்"),
+      desc: trans(
+        "Introduced livelihood and skill development programs.",
+        "வாழ்வாதார மற்றும் திறன் மேம்பாட்டுத் திட்டங்கள் அறிமுகப்படுத்தப்பட்டன."
+      ),
     },
     {
       year: "2022",
-      title: "Home Tutoring & Study Center",
-      desc: "Mr. Raghu dedicated personal living space to house daily study batches, books, notebook banks, and evening study lamps for first-generation learners.",
-      tag: "Academic Consistency",
+      badgeColor: "bg-amber-500",
+      lineColor: "border-amber-300",
+      title: trans("Stronger Communities", "வலுவான சமூகங்கள்"),
+      desc: trans(
+        "Reached more beneficiaries through new partnerships.",
+        "புதிய கூட்டாண்மைகள் மூலம் கூடுதல் பயனாளிகளை சென்றடைந்தது."
+      ),
     },
     {
-      year: "2023",
-      title: "Formal Trust Registration & Library Facility",
-      desc: "Sathiyavani Charitable Trust was formally registered as a public charitable trust in Tamil Nadu. Local police authorities recognized the community service, providing space under a local library.",
-      tag: "Formal Trust Establishment",
+      year: "2024",
+      badgeColor: "bg-blue-600",
+      lineColor: "border-blue-300",
+      title: trans("Towards a Brighter Tomorrow", "ஒளிரும் எதிர்காலத்தை நோக்கி"),
+      desc: trans(
+        "Continuing our mission with greater focus and wider reach.",
+        "அதிக கவனத்துடனும் விரிவான நோக்கத்துடனும் எங்களது சேவையைத் தொடர்கிறோம்."
+      ),
+    },
+  ];
+
+  const impactStats = [
+    {
+      value: "2,500+",
+      label: trans("Lives Touched", "பயனடைந்தோர்"),
+      icon: <Users className="w-7 h-7 sm:w-8 sm:h-8 text-sky-600" />,
     },
     {
-      year: "2024–Present",
-      title: "Multi-Pillar Community Movement",
-      desc: "Operating 5 continuous community programs: Free Tuition, Holistic Child Development, Single-Parent Support, Annual Diwali Joy distributions (1,000+ recipients), and Environmental Tree Drives.",
-      tag: "Current Active Outreach",
+      value: "700+",
+      label: trans("Children Educated", "கல்வி பயின்ற குழந்தைகள்"),
+      icon: <BookOpen className="w-7 h-7 sm:w-8 sm:h-8 text-rose-500" />,
+    },
+    {
+      value: "1,200+",
+      label: trans("Medical Support", "மருத்துவ ஆதரவு"),
+      icon: <Activity className="w-7 h-7 sm:w-8 sm:h-8 text-emerald-600" />,
+    },
+    {
+      value: "350+",
+      label: trans("Families Empowered", "மேம்பட்ட குடும்பங்கள்"),
+      icon: <Sprout className="w-7 h-7 sm:w-8 sm:h-8 text-amber-600" />,
     },
   ];
 
   return (
-    <div className="bg-brand-canvas min-h-screen">
-      {/* Breadcrumb Bar */}
-      <div className="bg-brand-muted/70 border-b border-slate-200">
-        <Container>
-          <Breadcrumbs items={breadcrumbItems} />
-        </Container>
-      </div>
+    <div className="bg-[#FDFBF7] min-h-screen">
+      {/* 1. Hero Section matching mockup */}
+      <section className="relative w-full min-h-[440px] sm:min-h-[500px] lg:min-h-[540px] flex items-center overflow-hidden">
+        {/* Background Image */}
+        <div className="absolute inset-0 z-0">
+          <Image
+            src="/assets/images/hero-children.jpg"
+            alt="Smiling Indian children at Sathiyavani Charitable Trust"
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover object-center sm:object-[center_35%]"
+          />
+          {/* Gradient overlay for contrast */}
+          <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/55 to-black/20 sm:to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/20" />
+        </div>
 
-      {/* Hero Section */}
-      <section className="bg-white border-b border-slate-200/80 py-12 sm:py-20">
-        <Container>
-          <div className="max-w-3xl space-y-4">
-            <div className="inline-flex items-center gap-2">
-              <Badge variant="navy" size="md">
-                About Sathiyavani Trust
-              </Badge>
-              <Badge variant="amber" size="md">
-                Grassroots Since 2020
-              </Badge>
+        {/* Content Container */}
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full py-16 sm:py-20 lg:py-24">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+            {/* Left Content (8 cols) */}
+            <div className="lg:col-span-8 text-left space-y-4">
+              {/* Breadcrumb matching mockup */}
+              <div className="flex items-center gap-1.5 text-xs sm:text-sm font-semibold mb-2">
+                <Link
+                  href="/"
+                  className="text-amber-400 hover:text-amber-300 transition-colors"
+                >
+                  {trans("Home", "முகப்பு")}
+                </Link>
+                <ChevronRight className="w-3.5 h-3.5 text-white/70" />
+                <span className="text-white">{trans("About Us", "எங்களை பற்றி")}</span>
+              </div>
+
+              {/* Headline */}
+              <div>
+                <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold text-white tracking-tight leading-tight drop-shadow-md">
+                  {trans("About", "எங்களை")}{" "}
+                  <span className="text-amber-400 font-serif font-bold">
+                    {trans("Us", "பற்றி")}
+                  </span>
+                </h1>
+                <div className="w-16 h-1.5 bg-amber-400 rounded-full mt-2.5 shadow-xs" />
+              </div>
+
+              {/* Subtext */}
+              <p className="text-white/90 text-sm sm:text-base lg:text-lg max-w-xl font-normal leading-relaxed drop-shadow-sm pt-1">
+                {trans(
+                  "We are committed to creating a more inclusive, compassionate and empowered society through education, healthcare, livelihood and community support.",
+                  "கல்வி, மருத்துவம், வாழ்வாதாரம் மற்றும் சமூக ஆதரவு மூலம் அனைவரையும் உள்ளடக்கிய, இரக்கமுள்ள மற்றும் வலுவான சமுதாயத்தை உருவாக்க நாங்கள் கடமைப்பட்டுள்ளோம்."
+                )}
+              </p>
             </div>
 
-            <h1 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 tracking-tight leading-[1.15]">
-              Empowering Underprivileged Communities Through Education, Care, and Dignity
-            </h1>
+            {/* Right Badge: "People Education ♡ Better Tomorrow" */}
+            <div className="hidden lg:flex lg:col-span-4 justify-end relative">
+              <div className="relative transform -rotate-6 hover:rotate-0 transition-transform duration-300">
+                <div className="relative bg-[#FFFBF0] border-2 border-amber-200/90 shadow-2xl rounded-2xl px-6 py-5 text-center min-w-[220px] backdrop-blur-sm">
+                  {/* Pin accent */}
+                  <div className="absolute -top-3 left-1/2 -translate-x-1/2 w-10 h-3 bg-amber-200/80 rounded-sm shadow-xs" />
 
-            <p className="text-base sm:text-lg text-slate-600 leading-relaxed">
-              Sathiyavani Charitable Trust is a non-profit organization rooted in Chennai,
-              dedicated to creating lasting social change by providing free educational opportunities,
-              childhood joy, and social security for underserved families.
-            </p>
+                  <div className="font-handwriting text-3xl sm:text-4xl text-slate-900 font-bold leading-tight">
+                    {trans("People", "மக்கள்")}<br />
+                    {trans("Education", "கல்வி")} <span className="text-rose-500 font-sans inline-block align-middle">♡</span><br />
+                    {trans("Better", "ஒளிரும்")}<br />
+                    <span className="text-slate-900">{trans("Tomorrow", "எதிர்காலம்")}</span>
+                  </div>
+
+                  {/* Golden curved scribble underline */}
+                  <svg
+                    className="w-24 h-3 mx-auto mt-2 text-amber-500 stroke-current"
+                    viewBox="0 0 100 12"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M2 7C25 2 70 2 98 8"
+                      strokeWidth="3.5"
+                      strokeLinecap="round"
+                    />
+                  </svg>
+                </div>
+              </div>
+            </div>
           </div>
-        </Container>
+        </div>
       </section>
 
-      {/* Main Content Grid */}
-      <section className="py-12 sm:py-16">
-        <Container>
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
-            {/* Left 8 Cols: Detailed Narrative */}
-            <div className="lg:col-span-8 space-y-12">
-              {/* Who We Are & Purpose */}
-              <div className="space-y-4">
-                <span className="text-xs uppercase font-bold text-brand-navy tracking-wider block">
-                  Our Identity & Purpose
-                </span>
-                <h2 className="font-heading text-2xl sm:text-3xl font-extrabold text-slate-900">
-                  Building Equal Opportunities for Every Child
-                </h2>
-                <p className="text-slate-600 leading-relaxed text-sm sm:text-base">
-                  We believe that every child deserves access to education, dignity, care, and
-                  development regardless of their family’s financial circumstances. Through dedicated
-                  volunteers, individual sponsors, and community partnerships, we work on the ground
-                  to ensure no student is forced to drop out due to poverty.
-                </p>
-                <p className="text-slate-600 leading-relaxed text-sm sm:text-base">
-                  Our service model is human-centered and dignity-first. We do not view community
-                  members as passive aid recipients, but as active partners in their own growth and
-                  self-reliance.
-                </p>
-              </div>
+      {/* 2. Floating 4 Foundation Pillar Cards (Overlapping the Hero) */}
+      <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-12 sm:-mt-16 lg:-mt-20">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+          {foundationPillars.map((pillar, idx) => (
+            <div
+              key={idx}
+              className="bg-white rounded-2xl p-5 sm:p-6 shadow-card hover:shadow-elevated border border-slate-100 transition-all duration-300 transform hover:-translate-y-1 flex flex-col justify-between"
+            >
+              <div>
+                {/* Circular Icon */}
+                <div
+                  className={`w-12 h-12 rounded-full ${pillar.iconBg} flex items-center justify-center mb-4 shadow-xs`}
+                >
+                  {pillar.icon}
+                </div>
 
-              {/* The Social Need We Address */}
-              <div className="p-6 sm:p-8 bg-white rounded-2xl border border-slate-200 shadow-subtle space-y-4">
-                <h3 className="font-heading text-xl font-bold text-slate-900">
-                  The Challenges We Address in Chennai
+                {/* Title */}
+                <h3 className="font-heading text-lg font-bold text-slate-900 mb-2">
+                  {pillar.title}
                 </h3>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
-                  <div className="p-4 bg-brand-canvas rounded-xl border border-slate-200/70">
-                    <h4 className="font-heading text-sm font-bold text-brand-navy mb-1">
-                      First-Generation Learning Hurdles
-                    </h4>
-                    <p className="text-xs text-slate-600 leading-relaxed">
-                      Children of daily-wage workers often lack academic reinforcement at home,
-                      causing them to fall behind in foundational mathematics and literacy.
-                    </p>
-                  </div>
-                  <div className="p-4 bg-brand-canvas rounded-xl border border-slate-200/70">
-                    <h4 className="font-heading text-sm font-bold text-brand-terracotta mb-1">
-                      Secondary School Dropout Risks
-                    </h4>
-                    <p className="text-xs text-slate-600 leading-relaxed">
-                      Financial shocks, sudden school-fee hikes, or family illness frequently force
-                      promising high-school students to abandon their education prematurely.
-                    </p>
-                  </div>
-                  <div className="p-4 bg-brand-canvas rounded-xl border border-slate-200/70">
-                    <h4 className="font-heading text-sm font-bold text-brand-amber mb-1">
-                      Vulnerable Single-Parent Homes
-                    </h4>
-                    <p className="text-xs text-slate-600 leading-relaxed">
-                      Single mothers and widowed breadwinners face extreme economic stress balancing
-                      subsistence wages with their children's schooling and nutritional needs.
-                    </p>
-                  </div>
-                  <div className="p-4 bg-brand-canvas rounded-xl border border-slate-200/70">
-                    <h4 className="font-heading text-sm font-bold text-brand-teal mb-1">
-                      Social Isolation of Tribal & Disabled Neighbors
-                    </h4>
-                    <p className="text-xs text-slate-600 leading-relaxed">
-                      Differently-abled individuals and tribal settlements frequently experience
-                      exclusion from mainstream festive celebrations and civic welfare schemes.
-                    </p>
-                  </div>
-                </div>
-              </div>
 
-              {/* Documented History & Milestones */}
-              <div className="space-y-6">
-                <div>
-                  <span className="text-xs uppercase font-bold text-brand-navy tracking-wider block">
-                    Our Operational History
-                  </span>
-                  <h2 className="font-heading text-2xl font-bold text-slate-900 mt-1">
-                    Timeline of Grassroots Growth
-                  </h2>
-                  <p className="text-xs sm:text-sm text-slate-500 mt-1">
-                    Tracing our journey from an emergency roadside tutoring effort during the
-                    lockdown to a structured non-profit organization.
-                  </p>
-                </div>
-
-                <div className="space-y-4">
-                  {timelineMilestones.map((item, idx) => (
-                    <div
-                      key={idx}
-                      className="p-5 bg-white rounded-2xl border border-slate-200 shadow-xs flex flex-col sm:flex-row items-start gap-4"
-                    >
-                      <div className="flex sm:flex-col items-center gap-2 sm:gap-1 shrink-0">
-                        <span className="font-heading text-xl font-extrabold text-brand-navy">
-                          {item.year}
-                        </span>
-                        <Badge variant="navy" size="sm">
-                          {item.tag}
-                        </Badge>
-                      </div>
-                      <div className="flex-1">
-                        <h4 className="font-heading text-base font-bold text-slate-900 mb-1">
-                          {item.title}
-                        </h4>
-                        <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                          {item.desc}
-                        </p>
-                      </div>
+                {/* Content */}
+                {pillar.isValuesList ? (
+                  <div className="grid grid-cols-2 gap-2 text-xs sm:text-[13px] text-slate-700 font-medium pt-1">
+                    <div className="space-y-1.5">
+                      {pillar.valuesCol1?.map((val) => (
+                        <div key={val} className="flex items-center gap-1.5">
+                          <Check className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
+                          <span>{val}</span>
+                        </div>
+                      ))}
                     </div>
-                  ))}
-                </div>
+                    <div className="space-y-1.5">
+                      {pillar.valuesCol2?.map((val) => (
+                        <div key={val} className="flex items-center gap-1.5">
+                          <Check className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
+                          <span>{val}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                ) : (
+                  <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                    {pillar.description}
+                  </p>
+                )}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* 3. Middle Section: "Our Story" & "Our Journey" */}
+      <section className="py-14 sm:py-20" id="our-journey">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-start">
+            {/* Left Column: Our Story (7 cols) */}
+            <div className="lg:col-span-7 space-y-6">
+              <div>
+                <h2 className="font-serif text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+                  {trans("Our", "எங்கள்")}{" "}
+                  <span className="text-amber-500 font-serif font-bold">
+                    {trans("Story", "கதை")}
+                  </span>
+                </h2>
+                <div className="w-14 h-1.5 bg-amber-400 rounded-full mt-2 shadow-xs" />
               </div>
 
-              {/* Approach to Community Engagement */}
-              <div className="p-6 bg-brand-navy text-white rounded-2xl space-y-3">
-                <h3 className="font-heading text-lg font-bold text-brand-amber">
-                  Our Guiding Ethical Code
-                </h3>
-                <p className="text-sm text-slate-200 leading-relaxed">
-                  We never photograph or portray children in degrading conditions for publicity.
-                  Every volunteer undergoes basic safeguarding orientation, and all student records
-                  remain strictly confidential to protect child dignity.
+              <div className="space-y-4 text-slate-600 text-sm sm:text-base leading-relaxed">
+                <p>
+                  {trans(
+                    "Sathiyavani Charitable Trust was founded with a simple belief – that every individual deserves an opportunity to learn, grow and live with dignity. What started as a small initiative has now grown into a community-driven organization working across education, healthcare, livelihood and social welfare.",
+                    "ஒவ்வொரு நபரும் கற்பதற்கும், வளர்வதற்கும், கண்ணியத்துடன் வாழ்வதற்கும் சமமான வாய்ப்பைப் பெற வேண்டும் என்ற எளிய நம்பிக்கையுடன் சத்தியவாணி அறக்கட்டளை தொடங்கப்பட்டது. ஒரு சிறிய முயற்சியாகத் தொடங்கியது இன்று கல்வி, மருத்துவம், வாழ்வாதாரம் மற்றும் சமூக நலனில் பணியாற்றும் மக்கள் இயக்கமாக வளர்ந்துள்ளது."
+                  )}
                 </p>
-                <div className="pt-2">
-                  <Link
-                    href="/privacy"
-                    className="text-xs font-semibold text-white hover:text-brand-amber underline inline-flex items-center gap-1"
-                  >
-                    <span>Read Our Child Safeguarding & Privacy Policy</span>
-                    <ArrowRight className="w-3.5 h-3.5" />
-                  </Link>
-                </div>
+                <p>
+                  {trans(
+                    "Through the support of our donors, volunteers and partners, we continue to create meaningful impact in the lives of many.",
+                    "எங்கள் நன்கொடையாளர்கள், தன்னார்வலர்கள் மற்றும் கூட்டாளர்களின் ஆதரவுடன், பலரின் வாழ்வில் அர்த்தமுள்ள தாக்கத்தை நாங்கள் தொடர்ந்து உருவாக்குகிறோம்."
+                  )}
+                </p>
+              </div>
+
+              <div>
+                <a
+                  href="#timeline"
+                  className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full text-white font-bold text-xs sm:text-sm bg-gradient-to-r from-rose-500 via-rose-600 to-pink-600 hover:from-rose-600 hover:to-pink-700 shadow-md hover:shadow-lg transition-all duration-200 transform hover:-translate-y-0.5"
+                >
+                  <span>{trans("Our Journey", "எங்கள் பயணம்")}</span>
+                  <ArrowRight className="w-4 h-4" />
+                </a>
+              </div>
+
+              {/* Photo matching mockup */}
+              <div className="relative aspect-[16/10] w-full rounded-2xl overflow-hidden shadow-card border border-slate-200/80 bg-slate-100 mt-6">
+                <Image
+                  src="/assets/images/about-story-children.jpg"
+                  alt="Children studying together at Sathiyavani Charitable Trust"
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 700px"
+                  className="object-cover"
+                />
               </div>
             </div>
 
-            {/* Right 4 Cols: Quick Navigation & Leadership Spotlight */}
-            <div className="lg:col-span-4 space-y-6">
-              {/* Founder Profile Card */}
-              <Card variant="elevated" className="p-6 sm:p-7 card-glow-hover overflow-hidden">
-                <div className="relative aspect-[4/3] rounded-xl overflow-hidden mb-4 bg-brand-navy-dark shadow-inner">
-                  <Image
-                    src="/assets/images/founder-raghu.jpg"
-                    alt={SITE_CONFIG.founderName}
-                    fill
-                    className="object-cover"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent" />
-                  <div className="absolute bottom-2.5 left-3 right-3 text-white">
-                    <span className="text-[10px] font-bold uppercase tracking-wider text-brand-amber block">
-                      Managing Trustee
-                    </span>
-                    <span className="font-heading text-sm font-bold block">
-                      {SITE_CONFIG.founderName}
-                    </span>
-                  </div>
-                </div>
-                <p className="text-sm text-slate-600 leading-relaxed mb-5">
-                  "No child should be denied education due to financial hardship." A dedicated
-                  educator who turned personal conviction into an enduring community movement in Chennai.
-                </p>
-                <Button variant="secondary" size="sm" href="/founder" className="w-full justify-center">
-                  Read Full Founder Story
-                </Button>
-              </Card>
-
-              {/* Mission & Vision Quick Links */}
-              <div className="p-6 bg-white rounded-2xl border border-slate-200 shadow-subtle space-y-4">
-                <h4 className="font-heading text-base font-bold text-slate-900">
-                  Guiding Declarations
-                </h4>
-                <div className="space-y-2">
-                  <Link
-                    href="/mission"
-                    className="flex items-center justify-between p-3 rounded-xl bg-brand-canvas hover:bg-brand-navy-soft text-slate-800 hover:text-brand-navy text-sm font-semibold transition-colors"
-                  >
-                    <span>Our Stated Mission</span>
-                    <ArrowRight className="w-4 h-4 text-slate-400" />
-                  </Link>
-                  <Link
-                    href="/vision"
-                    className="flex items-center justify-between p-3 rounded-xl bg-brand-canvas hover:bg-brand-navy-soft text-slate-800 hover:text-brand-navy text-sm font-semibold transition-colors"
-                  >
-                    <span>Our Long-term Vision</span>
-                    <ArrowRight className="w-4 h-4 text-slate-400" />
-                  </Link>
-                  <Link
-                    href="/impact"
-                    className="flex items-center justify-between p-3 rounded-xl bg-brand-canvas hover:bg-brand-navy-soft text-slate-800 hover:text-brand-navy text-sm font-semibold transition-colors"
-                  >
-                    <span>Verified Impact Metrics</span>
-                    <ArrowRight className="w-4 h-4 text-slate-400" />
-                  </Link>
-                </div>
+            {/* Right Column: Our Journey (Timeline) (5 cols) */}
+            <div className="lg:col-span-5 bg-white rounded-3xl p-6 sm:p-8 shadow-card border border-slate-100" id="timeline">
+              <div>
+                <h2 className="font-serif text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+                  {trans("Our Journey", "எங்கள் பயணம்")}
+                </h2>
+                <div className="w-12 h-1.5 bg-amber-400 rounded-full mt-2 shadow-xs" />
               </div>
 
-              {/* Get Involved Action Card */}
-              <Card variant="flat" className="p-6 text-center space-y-4">
-                <Heart className="w-8 h-8 text-brand-terracotta mx-auto" />
-                <h4 className="font-heading text-lg font-bold text-slate-900">
-                  Join Our Grassroots Effort
-                </h4>
-                <p className="text-xs text-slate-600 leading-relaxed">
-                  Support a child's school fees or volunteer your time on weekends at our Chennai
-                  tuition center.
-                </p>
-                <div className="pt-1 flex flex-col gap-2">
-                  <Button variant="primary" size="sm" href="/sponsor" className="w-full justify-center">
-                    Sponsor a Student
-                  </Button>
-                  <Button variant="outline" size="sm" href="/volunteer" className="w-full justify-center">
-                    Volunteer as a Tutor
-                  </Button>
-                </div>
-              </Card>
+              {/* Vertical Timeline matching mockup */}
+              <div className="relative mt-8 space-y-6 before:absolute before:inset-0 before:left-[19px] sm:before:left-[21px] before:w-[2px] before:bg-slate-200">
+                {journeyMilestones.map((milestone, idx) => (
+                  <div key={idx} className="relative flex items-start gap-4">
+                    {/* Year Badge Node */}
+                    <div
+                      className={`relative z-10 w-10 sm:w-11 h-6 sm:h-7 rounded-full ${milestone.badgeColor} text-white font-bold text-[11px] sm:text-xs flex items-center justify-center shrink-0 shadow-xs mt-0.5`}
+                    >
+                      {milestone.year}
+                    </div>
+
+                    {/* Milestone Details */}
+                    <div className="flex-1 pt-0.5">
+                      <h3 className="font-heading text-sm sm:text-base font-bold text-slate-900 leading-tight">
+                        {milestone.title}
+                      </h3>
+                      <p className="text-xs sm:text-[13px] text-slate-600 leading-relaxed mt-1">
+                        {milestone.desc}
+                      </p>
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
-        </Container>
+        </div>
+      </section>
+
+      {/* 4. Section: "Our Impact So Far" & "Our Team" */}
+      <section className="pb-16 sm:pb-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 items-stretch">
+            {/* Left Card: Our Impact So Far (5 cols) */}
+            <div className="lg:col-span-5 bg-[#EDF7F2] rounded-3xl p-6 sm:p-7 border border-emerald-100 shadow-card flex flex-col justify-between">
+              <div>
+                <h2 className="font-serif text-2xl font-bold text-slate-900 tracking-tight">
+                  {trans("Our Impact So Far", "இதுவரையிலான எங்கள் தாக்கம்")}
+                </h2>
+                <div className="w-12 h-1.5 bg-amber-400 rounded-full mt-2 shadow-xs" />
+              </div>
+
+              {/* 4 Stats in 2x2 or 4-row layout */}
+              <div className="grid grid-cols-2 gap-4 my-6">
+                {impactStats.map((stat, idx) => (
+                  <div
+                    key={idx}
+                    className="flex items-center gap-3 bg-white/80 rounded-xl p-3 border border-emerald-100 shadow-xs"
+                  >
+                    <div className="shrink-0">{stat.icon}</div>
+                    <div className="flex flex-col min-w-0">
+                      <span className="font-heading text-xl sm:text-2xl font-extrabold text-slate-900 leading-tight">
+                        {stat.value}
+                      </span>
+                      <span className="text-[11px] font-semibold text-slate-600 truncate mt-0.5">
+                        {stat.label}
+                      </span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              <div className="pt-2">
+                <Link
+                  href="/impact"
+                  className="inline-flex items-center gap-1.5 text-xs font-bold text-emerald-800 hover:text-emerald-950 transition-colors"
+                >
+                  <span>{trans("Explore Verified Social Audit Details", "உறுதிப்படுத்தப்பட்ட சமூக தணிக்கை விவரங்களைக் காண்க")}</span>
+                  <ArrowRight className="w-3.5 h-3.5" />
+                </Link>
+              </div>
+            </div>
+
+            {/* Right Card: Volunteer Team Image (7 cols) */}
+            <div className="lg:col-span-7 relative min-h-[320px] lg:min-h-full rounded-3xl overflow-hidden shadow-card border border-slate-100 bg-slate-100 group">
+              <Image
+                src="/assets/images/volunteer-team-horizon.jpg"
+                alt="Sathiyavani Charitable Trust Volunteer Team"
+                fill
+                sizes="(max-width: 1024px) 100vw, 58vw"
+                className="object-cover object-center transition-transform duration-700 group-hover:scale-105"
+                priority
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 5. Bottom Banner: "Join Our Journey" */}
+      <section className="relative w-full py-16 sm:py-20 overflow-hidden">
+        {/* Background Photo: Hands holding sapling in soil */}
+        <div className="absolute inset-0 z-0">
+          <Image
+            src="/assets/images/cta-hands-sapling.jpg"
+            alt="Hands holding green sapling in soil"
+            fill
+            sizes="100vw"
+            className="object-cover object-center"
+          />
+          {/* Dark overlay */}
+          <div className="absolute inset-0 bg-black/70 sm:bg-black/65" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/60" />
+        </div>
+
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+            {/* Left Headline & CTAs (9 cols) */}
+            <div className="lg:col-span-9 text-center lg:text-left space-y-3.5">
+              <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-white tracking-tight leading-tight">
+                {trans("Join Our", "எங்கள் பயணத்தில்")}{" "}
+                <span className="text-amber-400 font-serif font-bold">
+                  {trans("Journey", "இணையுங்கள்")}
+                </span>
+              </h2>
+
+              <p className="text-white/85 text-sm sm:text-base max-w-2xl leading-relaxed">
+                {trans(
+                  "Together, we can build a stronger, more inclusive and compassionate society.",
+                  "ஒன்றிணைந்து, நாம் ஒரு வலுவான, அனைவரையும் உள்ளடக்கிய மற்றும் அன்பான சமூகத்தை உருவாக்குவோம்."
+                )}
+              </p>
+
+              <div className="flex flex-wrap items-center justify-center lg:justify-start gap-3.5 pt-3">
+                <Link
+                  href="/sponsor"
+                  className="inline-flex items-center gap-2 px-6 sm:px-7 py-3 rounded-full text-white font-bold text-xs sm:text-sm bg-gradient-to-r from-rose-500 via-rose-600 to-pink-600 hover:from-rose-600 hover:to-pink-700 shadow-lg hover:shadow-xl transition-all duration-200 transform hover:-translate-y-0.5"
+                >
+                  <Heart className="w-4 h-4 fill-white text-white" aria-hidden="true" />
+                  <span>{trans("Donate Now", "நன்கொடை அளியுங்கள்")}</span>
+                </Link>
+
+                <Link
+                  href="/volunteer"
+                  className="inline-flex items-center gap-2 px-6 sm:px-7 py-3 rounded-full text-white font-bold text-xs sm:text-sm bg-black/45 hover:bg-black/65 border border-white/40 backdrop-blur-md shadow-md hover:shadow-lg transition-all duration-200 transform hover:-translate-y-0.5"
+                >
+                  <Users className="w-4 h-4 text-white" aria-hidden="true" />
+                  <span>{trans("Become a Volunteer", "தன்னார்வலராக இணையுங்கள்")}</span>
+                </Link>
+              </div>
+            </div>
+
+            {/* Right Script Accent Badge: "Small Actions Big Impact ♡" */}
+            <div className="lg:col-span-3 flex justify-center lg:justify-end">
+              <div className="text-center lg:text-right transform -rotate-6 hover:rotate-0 transition-transform duration-300">
+                <span className="font-handwriting text-3xl sm:text-4xl text-amber-200 font-bold leading-tight drop-shadow-md block">
+                  {trans("Small Actions", "சிறு முயற்சிகள்")}<br />
+                  <span className="text-white">{trans("Big Impact", "பெரும் மாற்றம்")}</span> <span className="text-rose-400 font-sans inline-block align-middle">♡</span>
+                </span>
+                {/* Golden curved doodle underline */}
+                <svg
+                  className="w-24 h-3 ml-auto mr-auto lg:mr-0 mt-2 text-amber-400 stroke-current"
+                  viewBox="0 0 100 12"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M2 7C25 2 70 2 98 8"
+                    strokeWidth="3.5"
+                    strokeLinecap="round"
+                  />
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
       </section>
     </div>
   );
