@@ -21,7 +21,7 @@ export async function submitPublicInquiryAction(
   prevState: PublicInquiryResult | null,
   formData: FormData
 ): Promise<PublicInquiryResult> {
-  const headerList = headers();
+  const headerList = await headers();
   const forwardedFor = headerList.get("x-forwarded-for") || headerList.get("cf-connecting-ip");
   const clientIp = forwardedFor ? forwardedFor.split(",")[0].trim() : "127.0.0.1";
 

@@ -33,7 +33,7 @@ export function decodeSession(token: string): AdminSession | null {
 }
 
 export async function getServerAdminSession(): Promise<AdminSession | null> {
-  const cookieStore = cookies();
+  const cookieStore = await cookies();
   const sessionCookie = cookieStore.get(SESSION_COOKIE_NAME);
   if (!sessionCookie || !sessionCookie.value) {
     return null;
@@ -42,7 +42,7 @@ export async function getServerAdminSession(): Promise<AdminSession | null> {
 }
 
 export async function setAdminSessionCookie(profile: AdminProfile): Promise<AdminSession> {
-  const cookieStore = cookies();
+  const cookieStore = await cookies();
   const expiresAt = Date.now() + SESSION_MAX_AGE_SECONDS * 1000;
   const session: AdminSession = {
     adminId: profile.id,
@@ -65,7 +65,7 @@ export async function setAdminSessionCookie(profile: AdminProfile): Promise<Admi
 }
 
 export async function clearAdminSessionCookie(): Promise<void> {
-  const cookieStore = cookies();
+  const cookieStore = await cookies();
   cookieStore.delete(SESSION_COOKIE_NAME);
 }
 
