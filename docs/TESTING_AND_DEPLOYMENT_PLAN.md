@@ -61,8 +61,8 @@ To guarantee institutional reliability, every release will be verified through a
 
 ### 4.1 Environments & Staging Isolation
 - **Local Development:** `localhost:3000` connected to Supabase Local Docker or Dev Project.
-- **Staging / Preview Environment:** Deployed automatically on every GitHub Pull Request via Netlify Deploy Previews (`deploy-preview-*.sathiyavanitrust.netlify.app`). Used for stakeholder review and automated Playwright runs.
-- **Production Environment:** `sathiyavanitrust.netlify.app` (and custom domain `sathiyavanitrust.org` upon DNS delegation). Triggered strictly by merges into the protected `main` branch.
+- **Staging / Preview Environment:** Deployed automatically on every GitHub Pull Request via Vercel Preview Deployments (`sathiyavanitrust-git-*.vercel.app`). Used for stakeholder review and automated Playwright runs.
+- **Production Environment:** `sathiyavanitrust.vercel.app` (and custom domain `sathiyavanitrust.org` upon DNS delegation). Triggered strictly by merges into the protected `main` branch on Vercel.
 
 ### 4.2 Database Migration Protocol
 1. Schema changes are authored as version-controlled SQL files in `supabase/migrations/`.
@@ -70,7 +70,7 @@ To guarantee institutional reliability, every release will be verified through a
 3. Production migration is executed during scheduled maintenance windows with immediate automated health checks.
 
 ### 4.3 Rollback & Disaster Recovery
-- **Instant Frontend Rollback:** Netlify Atomic Deployments allow 1-click instantaneous rollback to any previous commit hash.
+- **Instant Frontend Rollback:** Vercel Instant Rollback allows 1-click instantaneous rollback to any previous deployment or commit hash.
 - **Database Backups:** Daily automated backups in Supabase with Point-in-Time Recovery (PITR) enabled.
 
 ---
@@ -80,7 +80,7 @@ To guarantee institutional reliability, every release will be verified through a
 Before public DNS switchover, all items must be explicitly signed off:
 - [ ] TypeScript check clean (`npm run typecheck`).
 - [ ] Unit & E2E tests pass (`npm run test && npm run test:e2e`).
-- [ ] Environment variables configured in Netlify dashboard.
+- [ ] Environment variables configured in Vercel project settings.
 - [ ] Supabase Row Level Security (RLS) policies verified active.
 - [ ] SSL certificate active and HSTS headers enabled.
 - [ ] Custom 404 and Error boundary pages tested.

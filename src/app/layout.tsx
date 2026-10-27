@@ -6,8 +6,6 @@ import { SITE_CONFIG } from "@/lib/constants";
 import { LanguageProvider } from "@/context/LanguageContext";
 import "./globals.css";
 
-export const runtime = "edge";
-
 const plusJakartaSans = Plus_Jakarta_Sans({
   subsets: ["latin"],
   variable: "--font-heading",

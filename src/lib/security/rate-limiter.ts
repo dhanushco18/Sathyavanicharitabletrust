@@ -38,7 +38,7 @@ export function checkRateLimit(clientId: string): { allowed: boolean; remaining:
 
 /**
  * Generates deterministic idempotency hash to prevent duplicate submissions.
- * Edge-compatible pure JS implementation that runs on Cloudflare Workers, Edge runtime and Node.
+ * Pure JS implementation compatible with Vercel Serverless Functions, Edge runtime, and Node.js.
  */
 export function generateSubmissionHash(payload: {
   phone: string;
